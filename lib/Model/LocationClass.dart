@@ -1,4 +1,5 @@
 class Location {
+  final String objectID;
   final String businessId;
   final String name;
   final String address;
@@ -9,8 +10,10 @@ class Location {
   final int reviewCount;
   final bool isOpen;
   final String categories;
-
+  final String description;
+  final List<String> imageURL;
   Location({
+    required this.objectID,
     required this.businessId,
     required this.name,
     required this.address,
@@ -21,6 +24,9 @@ class Location {
     required this.reviewCount,
     required this.isOpen,
     required this.categories,
+    required this.description,
+    required this.imageURL,
+
   });
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
@@ -34,6 +40,11 @@ class Location {
       reviewCount: json['review_count'] ?? 0,
       isOpen: json['is_open'] == 1, // Convert 1/0 to boolean
       categories: (json['categories'] as String?) ?? 'Unknown',
+      objectID: json['objectID'] ?? '',
+      description: json['description'] ?? '',
+      imageURL: (json['image_urls'] as List<dynamic>?)
+          ?.map((url) => url.toString())
+          .toList() ?? [], // Safely convert to List<String>
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:algoliasearch/algoliasearch_lite.dart';
 import 'dart:convert';
 void main() async {
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

@@ -4,6 +4,8 @@ import 'package:travelaca/Model/SearchService.dart';
 import 'package:travelaca/Model/LocationClass.dart';
 import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/ViewScreen.dart';
 import 'package:travelaca/utils/FilterButton.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:path_provider/path_provider.dart';
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -15,9 +17,9 @@ class _SearchPageState extends State<SearchPage> {
   bool _isSearching = false;
   int _state = 0; // 0 = Recommendations, 1 = Search History, 2 = Search with Filters
   final SearchService _searchService = SearchService();
-
   final List<Location> _searchHistory = [
     Location(
+      objectID: "obj1",
       businessId: "1",
       name: "Sunny Beach",
       address: "123 Ocean Drive",
@@ -28,8 +30,11 @@ class _SearchPageState extends State<SearchPage> {
       reviewCount: 120,
       isOpen: true,
       categories: "Beach, Relaxation, Vacation",
+      description: "A perfect spot to relax by the ocean and enjoy sunny weather.",
+      imageURL: ['https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain'],
     ),
     Location(
+      objectID: "obj2",
       businessId: "2",
       name: "Mountain Escape",
       address: "456 Highland Ave",
@@ -40,8 +45,11 @@ class _SearchPageState extends State<SearchPage> {
       reviewCount: 200,
       isOpen: true,
       categories: "Hiking, Nature, Adventure",
+      description: "An adventurous getaway for nature lovers and hikers.",
+      imageURL: ['https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain'],
     ),
     Location(
+      objectID: "obj3",
       businessId: "3",
       name: "City Gallery",
       address: "789 Urban St",
@@ -52,55 +60,34 @@ class _SearchPageState extends State<SearchPage> {
       reviewCount: 90,
       isOpen: false,
       categories: "Art, Culture, Museum",
+      description: "A cultural hub showcasing the best in modern art.",
+      imageURL:['https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain'],
     ),
   ];
-  final List<Location> _recommendations = [
-    Location(
-      businessId: "1",
-      name: "Sunny Beach",
-      address: "123 Ocean Drive",
-      city: "Beach City",
-      latitude: 36.7783,
-      longitude: -119.4179,
-      stars: 4.5,
-      reviewCount: 120,
-      isOpen: true,
-      categories: "Beach, Relaxation, Vacation",
-    ),
-    Location(
-      businessId: "2",
-      name: "Mountain Escape",
-      address: "456 Highland Ave",
-      city: "Mountain Town",
-      latitude: 34.0522,
-      longitude: -118.2437,
-      stars: 4.8,
-      reviewCount: 200,
-      isOpen: true,
-      categories: "Hiking, Nature, Adventure",
-    ),
-    Location(
-      businessId: "3",
-      name: "City Gallery",
-      address: "789 Urban St",
-      city: "Metro City",
-      latitude: 40.7128,
-      longitude: -74.0060,
-      stars: 4.2,
-      reviewCount: 90,
-      isOpen: false,
-      categories: "Art, Culture, Museum",
-    ),
-  ];
+
+
   Future<void> _performSearch(String query) async {
+    if (query.isEmpty) {
+      setState(() {
+        _searchResults = [];
+        _state = 0; // Reset state
+      });
+      return;
+    }
     setState(() {
       _isSearching = true;
       _searchResults = [];
       _state = 2; // Switch to Search with Filters
     });
-
     final results = await _searchService.performSearch(query);
-
+    for (var result in results) {
+      print('Location: ${result.name}');
+      print('Address: ${result.address}');
+      print('Stars: ${result.stars}');
+      print('Review Count: ${result.reviewCount}');
+      print('Images: ${result.imageURL}');
+      // Separator for readability
+    }
     setState(() {
       _searchResults = results;
       _isSearching = false;
@@ -538,13 +525,16 @@ class _SearchPageState extends State<SearchPage> {
       color: Colors.white,
       child: Row(
         children: [
+          // Display the first image from the imageURL list
           ClipRRect(
             borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
-            child: Image(
-              image: AssetImage('assets/images/beach1.jpg'),
+            child: CachedNetworkImage(
+              imageUrl: result.imageURL.isNotEmpty ? result.imageURL.first : '',
               width: 70,
               height: 80,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => CircularProgressIndicator(), // Placeholder
+              errorWidget: (context, url, error) => Icon(Icons.error),    // Error widget
             ),
           ),
           Expanded(

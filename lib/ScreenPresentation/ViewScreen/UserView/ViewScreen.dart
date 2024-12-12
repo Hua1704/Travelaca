@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelaca/Model/LocationClass.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:path_provider/path_provider.dart';
 class ViewScreenSearch extends StatefulWidget {
   final Location location;
 
@@ -19,11 +21,7 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
     2: 5,  // 5 reviews with 2 stars
     1: 10, // 10 reviews with 1 star
   };
-  final String description =
-      'The Golden Bridge (Cầu Vàng) in Da Nang City, Vietnam, is a world-renowned architectural marvel perched in the scenic Ba Na Hills. '
-      'Completed in 2018, the bridge is celebrated for its unique design: a golden pedestrian walkway held aloft by two giant, weathered stone hands emerging from the hillside. '
-      'Stretching 150 meters (490 feet) and situated at an elevation of over 1,400 meters (4,600 feet) above sea level, the bridge offers breathtaking panoramic views of lush mountains, '
-      'verdant forests, and a surreal blend of nature and modern artistry. Its golden balustrades glisten under the sunlight, making it a photogenic and iconic landmark.';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +34,11 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
               SizedBox(
                 height: 180,
                 width: double.infinity,
-                child: Image.asset(
-                  'assets/images/Home.png', // Replace with your image
+                child: CachedNetworkImage(
+                  imageUrl: widget.location.imageURL.isNotEmpty ? widget.location.imageURL[0] : '',
                   fit: BoxFit.cover,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
               // Back and Favorite Buttons
@@ -131,8 +131,8 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                   const SizedBox(height: 8),
                   Text(
                     isReadMore
-                        ? description // Full text when expanded
-                        : '${description.substring(0, 150)}...', // Truncated text when collapsed
+                        ? widget.location.description // Full text when expanded
+                        : '${widget.location.description.substring(0, 150)}...', // Truncated text when collapsed
                     style: const TextStyle(fontSize: 14),
                   ),
                   TextButton(
@@ -156,23 +156,26 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                     height: 100,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 5, // Replace with actual number of images
+                      itemCount: widget.location.imageURL.length-1 , // Skip the first image
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              'assets/images/beach1.jpg', // Replace with dynamic image
+                            child: CachedNetworkImage(
+                              imageUrl: widget.location.imageURL[index+1], // Use remaining images
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover,
+                              placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
                           ),
                         );
                       },
                     ),
                   ),
+
                   const SizedBox(height: 16),
                   Row(
                   children: [

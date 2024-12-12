@@ -7,13 +7,11 @@ class SearchService {
   );
   Future<List<Location>> performSearch(String query) async {
     try {
-      print("Starting search for query: $query");
-
       final response = await client.search(
         searchMethodParams: SearchMethodParams(
           requests: [
             SearchForHits(
-              indexName: "sample",
+              indexName: "dev_locations",
               query: query,
               hitsPerPage: 50,
             ),
@@ -21,22 +19,23 @@ class SearchService {
         ),
       );
 
-      // Extract results and process hits
       final resultsList = response.results;
       if (resultsList.isEmpty) {
         print("No results found in 'results'.");
         return [];
       }
-      final firstResult = resultsList.first; // Get the first result from the results
-      final hits = firstResult['hits'] as List<dynamic>; // Extract hits as a list
 
-      // Map hits to SearchResult objects
+      final firstResult = resultsList.first;
+      final hits = firstResult['hits'] as List<dynamic>;
+
+      print("Hits: ${hits.length}"); // Log number of hits
       return hits.map<Location>((hit) {
         return Location.fromJson(hit as Map<String, dynamic>);
       }).toList();
+
     } catch (e) {
+      ; // Log error
       return [];
     }
   }
-
 }
