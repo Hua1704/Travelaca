@@ -1,14 +1,66 @@
+import 'package:algolia_client_recommend/algolia_client_recommend.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/ScreenPresentation/SearchScreen/SearchPage.dart';
+import 'package:travelaca/Network/firebase_cloud_firesotre.dart';
+import 'package:geolocator/geolocator.dart';
+import '../../Model/LocationClass.dart';
+import '../ViewScreen/UserView/ViewScreen.dart';
 class HottestTrend {
   final String? imageLink;
   final String? title;
   HottestTrend({this.imageLink, this.title});
 }
-
-class HomeScreen extends StatelessWidget{
-  final VoidCallback onSearchTapped;
+class HomeScreen extends StatefulWidget {
+  late final VoidCallback onSearchTapped;
   HomeScreen({required this.onSearchTapped});
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+class _HomeScreenState extends State<HomeScreen>{
+  late Future<List<Map<String, dynamic>>> _recommendationsFuture;
+  final CloudFirestore _locationService = CloudFirestore();
+  void initState() {
+    super.initState();
+    _recommendationsFuture = CloudFirestore().fetchRecommendationsForUser();
+  }
+  Future<void> saveLastViewedBusiness(String businessId) async {
+    try {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        return;
+      }
+
+      // Reference to the user's Firestore document
+      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user.uid);
+      // Get the current last_viewed_algolia_id array
+      final userDoc = await userDocRef.get();
+      if (userDoc.exists) {
+        List<dynamic> lastViewedList = userDoc.data()?['last_viewed_algolia_id'] ?? [];
+        lastViewedList = List<String>.from(lastViewedList); // Cast to List<String>
+
+        // Add the new business ID and trim the list to the last 3 items
+        lastViewedList.insert(0, businessId); // Add the new business ID at the start
+        if (lastViewedList.length > 3) {
+          lastViewedList = lastViewedList.sublist(0, 3); // Keep only the last 3
+        }
+
+        // Update Firestore
+        await userDocRef.update({'last_viewed_algolia_id': lastViewedList});
+      } else {
+        // If the user document does not exist, create one with the business ID
+        await userDocRef.set({
+          'last_viewed_algolia_id': [businessId],
+        });
+
+      }
+    } catch (e) {
+
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +115,7 @@ class HomeScreen extends StatelessWidget{
                     borderRadius: BorderRadius.circular(30),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30), // Ensures ripple effect respects shape
-                      onTap: onSearchTapped,
+                      onTap: widget.onSearchTapped,
                       child: TextField(
                         enabled: false, // Disable the text field so it doesn't open the keyboard
                         decoration: InputDecoration(
@@ -107,16 +159,40 @@ class HomeScreen extends StatelessWidget{
             ),
             Container(
               height: 180, // Height of the horizontal list
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  placeCard("Jimbaran Beach", "16.5 Km", "assets/images/beach1.jpg",4.5),
-                  placeCard("Muaya Beach", "19.5 Km", "assets/images/beach2.jpg",4.5),
-                  placeCard("Nusa Dua Beach", "25.5 Km", "assets/images/beach3.jpg",4.0),  // Add more places here
-                  placeCard("Seminyak Beach", "12.5 Km", "assets/images/beach4.jpg",5.0),
-                ],
+              child: FutureBuilder<List<Map<String, dynamic>>>(
+                future: _recommendationsFuture, // Fetch recommendations dynamically
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator()); // Show loading spinner
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}')); // Show error message
+                  } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                    final recommendations = snapshot.data!;
+
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: recommendations.length,
+                      itemBuilder: (context, index) {
+                        final location = recommendations[index];
+                        return placeCard(
+                          location['name'] ?? 'Unknown Place', // Name of the location
+                          location['longitude'] ?? 'Unknown Distance', // Distance from the user
+                          location['image_urls'] != null && location['image_urls'].isNotEmpty
+                              ? location['image_urls'][0] // Use the first image in the list
+                              : 'assets/images/default_image.jpg',
+                            (location['stars'] ?? 0.0).toDouble(),
+                          location['id'] ?? '',
+                          //location['stars'] ?? 0
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(child: Text('No recommendations found.')); // No data available
+                  }
+                },
               ),
             ),
+
             SizedBox(height: 20),
             // Hottest Trend Section
             Padding(
@@ -241,9 +317,21 @@ class HomeScreen extends StatelessWidget{
     );
   }
 
-  Widget placeCard(String title, String distance, String imagePath,double stars) {
+  Widget placeCard(String title, double distance, String imagePath, double stars, String id) {
     return GestureDetector(
-      onTap: (){}, // Handle the navigation here
+      onTap: () async {
+         saveLastViewedBusiness(id);
+         final location = await CloudFirestore.fetchLocation(id);
+         if (location != null) {
+           Navigator.push(
+             context,
+             MaterialPageRoute(
+               builder: (context) => ViewScreenSearch(location: location),
+             ),
+           );
+         }
+
+      },
       child: Container(
         width: 180,
         height: 202,
@@ -251,7 +339,9 @@ class HomeScreen extends StatelessWidget{
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           image: DecorationImage(
-            image: AssetImage(imagePath),
+            image: imagePath.isNotEmpty
+                ? NetworkImage(imagePath)
+                : AssetImage('assets/images/default_image.jpg') as ImageProvider,
             fit: BoxFit.cover,
           ),
         ),
@@ -294,10 +384,11 @@ class HomeScreen extends StatelessWidget{
                     Row(
                       children: [
                         Icon(
-                            Icons.location_on,
+                          Icons.location_on,
+                          size: 12,
                         ),
                         Text(
-                          distance,
+                          distance.toString(),
                           style: TextStyle(
                             color: Colors.black54,
                             fontSize: 12,
@@ -305,7 +396,7 @@ class HomeScreen extends StatelessWidget{
                         ),
                       ],
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(height: 5),
                     Row(
                       children: List.generate(5, (index) {
                         return Icon(
@@ -316,7 +407,6 @@ class HomeScreen extends StatelessWidget{
                       }),
                     ),
                   ],
-
                 ),
               ),
             ),
@@ -326,19 +416,5 @@ class HomeScreen extends StatelessWidget{
     );
   }
 }
-class ReviewScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text("Review Page"),
-    );
-  }
-}
-class AccountScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text("Account Page"),
-    );
-  }
-}
+
+

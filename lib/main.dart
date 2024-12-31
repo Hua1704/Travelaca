@@ -1,11 +1,15 @@
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/ScreenPresentation/SplashScreen/SplashScreen.dart';
 import 'MainPage.dart';
 import 'package:algoliasearch/algoliasearch_lite.dart';
 import 'dart:convert';
+import 'firebase_options.dart';
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensures all bindings are initialized before app start
+  await Firebase.initializeApp();
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {

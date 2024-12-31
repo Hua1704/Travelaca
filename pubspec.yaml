@@ -37,7 +37,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   algoliasearch: ^1.27.3
   cached_network_image: ^3.3.1
-
+  firebase_core: ^3.9.0
+  cloud_firestore: ^5.6.0
+  firebase_auth: ^5.3.4
+  firebase_storage: ^12.3.7
+  algolia_client_recommend: ^1.28.3
+  flutter_map_math: ^0.1.7
+  geolocator: ^13.0.2
+  shared_preferences: ^2.3.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +76,7 @@ flutter:
       - assets/images/beach2.jpg
       - assets/images/beach3.jpg
       - assets/images/beach4.jpg
+      - assets/images/google.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

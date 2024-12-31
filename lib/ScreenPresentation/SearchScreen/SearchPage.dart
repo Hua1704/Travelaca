@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/MainPage.dart';
 import 'package:travelaca/Model/SearchService.dart';
@@ -6,6 +10,10 @@ import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/ViewScreen.dart
 import 'package:travelaca/utils/FilterButton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../Network/firebase_cloud_firesotre.dart';
+
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -15,58 +23,93 @@ class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
   List<Location> _searchResults = [];
   bool _isSearching = false;
+  Timer? _searchDebounce;
   int _state = 0; // 0 = Recommendations, 1 = Search History, 2 = Search with Filters
   final SearchService _searchService = SearchService();
-  final List<Location> _searchHistory = [
-    Location(
-      objectID: "obj1",
-      businessId: "1",
-      name: "Sunny Beach",
-      address: "123 Ocean Drive",
-      city: "Beach City",
-      latitude: 36.7783,
-      longitude: -119.4179,
-      stars: 4.5,
-      reviewCount: 120,
-      isOpen: true,
-      categories: "Beach, Relaxation, Vacation",
-      description: "A perfect spot to relax by the ocean and enjoy sunny weather.",
-      imageURL: ['https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain'],
-    ),
-    Location(
-      objectID: "obj2",
-      businessId: "2",
-      name: "Mountain Escape",
-      address: "456 Highland Ave",
-      city: "Mountain Town",
-      latitude: 34.0522,
-      longitude: -118.2437,
-      stars: 4.8,
-      reviewCount: 200,
-      isOpen: true,
-      categories: "Hiking, Nature, Adventure",
-      description: "An adventurous getaway for nature lovers and hikers.",
-      imageURL: ['https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain'],
-    ),
-    Location(
-      objectID: "obj3",
-      businessId: "3",
-      name: "City Gallery",
-      address: "789 Urban St",
-      city: "Metro City",
-      latitude: 40.7128,
-      longitude: -74.0060,
-      stars: 4.2,
-      reviewCount: 90,
-      isOpen: false,
-      categories: "Art, Culture, Museum",
-      description: "A cultural hub showcasing the best in modern art.",
-      imageURL:['https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain'],
-    ),
-  ];
+  final CloudFirestore _locationService = CloudFirestore();
+  late Future<List<Map<String, dynamic>>> _recommendationsFuture;
+  void initState() {
+    final User? user = FirebaseAuth.instance.currentUser;
+    super.initState();
+    _recommendationsFuture = CloudFirestore().fetchRecommendationsForUser();
+    if(user==null)
+      {
+        _loadSearchHistoryForGuest();
+      }
+    else {
+    _loadSearchHistory();
+  }
+  }
+  Future<void> saveSearchToCache(String locationId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // Fetch the existing search history from cache
+    List<String> searchHistory = prefs.getStringList('guest_search_history') ?? [];
+
+    // Add the new locationId to the history
+    searchHistory.add(locationId);
+
+    // Keep only the last 10 searches
+    if (searchHistory.length > 10) {
+      searchHistory = searchHistory.sublist(searchHistory.length - 10);
+    }
+
+    // Save the updated search history back to cache
+    await prefs.setStringList('guest_search_history', searchHistory);
+  }
+  Future<List<Location>> _fetchCachedSearchHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cachedHistory = prefs.getStringList('guest_search_history') ?? [];
+    final locations = cachedHistory.map((e) => Location.fromJson(jsonDecode(e))).toList();
+    return locations;
+  }
+  late final List<Location> _searchHistory;
+  void _loadSearchHistory() async {
+    final history = await CloudFirestore().fetchSearchHistory();
+    setState(() {
+      _searchHistory = history;
+    });
+  }
+  Future<void> saveLastViewedBusiness(String businessId) async {
+    try {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        print("User not logged in.");
+        return;
+      }
+
+      // Reference to the user's Firestore document
+      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user.uid);
+
+      // Get the current last_viewed_algolia_id array
+      final userDoc = await userDocRef.get();
+      if (userDoc.exists) {
+        List<dynamic> lastViewedList = userDoc.data()?['last_viewed_algolia_id'] ?? [];
+        lastViewedList = List<String>.from(lastViewedList); // Cast to List<String>
+
+        // Add the new business ID and trim the list to the last 3 items
+        lastViewedList.insert(0, businessId); // Add the new business ID at the start
+        if (lastViewedList.length > 3) {
+          lastViewedList = lastViewedList.sublist(0, 3); // Keep only the last 3
+        }
+
+        // Update Firestore
+        await userDocRef.update({'last_viewed_algolia_id': lastViewedList});
+        print("Last viewed business updated: $lastViewedList");
+      } else {
+        // If the user document does not exist, create one with the business ID
+        await userDocRef.set({
+          'last_viewed_algolia_id': [businessId],
+        });
+        print("New user document created with last viewed business.");
+      }
+    } catch (e) {
+      print("Error saving last viewed business: $e");
+    }
+  }
 
   Future<void> _performSearch(String query) async {
+    final User? user = FirebaseAuth.instance.currentUser;
     if (query.isEmpty) {
       setState(() {
         _searchResults = [];
@@ -74,34 +117,73 @@ class _SearchPageState extends State<SearchPage> {
       });
       return;
     }
+
     setState(() {
       _isSearching = true;
       _searchResults = [];
       _state = 2; // Switch to Search with Filters
     });
-    final results = await _searchService.performSearch(query);
-    for (var result in results) {
-      print('Location: ${result.name}');
-      print('Address: ${result.address}');
-      print('Stars: ${result.stars}');
-      print('Review Count: ${result.reviewCount}');
-      print('Images: ${result.imageURL}');
-      // Separator for readability
+
+    try {
+      final results = await _searchService.performSearch(query);
+
+      // Save the searched location ID to Firebase
+      if (results.isNotEmpty) {
+        if(user == null) {
+          CloudFirestore().saveUserSearch(results.first.objectID);
+          CloudFirestore().saveUserSearch(results[1].objectID);
+          CloudFirestore().saveUserSearch(results[2].objectID);
+        }
+        else
+          {
+            await saveSearchToCache(results.first.objectID);
+            await saveSearchToCache(results[1].objectID);
+            await saveSearchToCache(results[2].objectID);
+          }
+      }
+
+      setState(() {
+        _searchResults = results;
+        _isSearching = false;
+      });
+    } catch (e) {
+      print("Error during search: $e");
+      setState(() {
+        _isSearching = false;
+        _searchResults = [];
+      });
+    }
+  }
+  void _loadSearchHistoryForGuest() async {
+    final location = await _fetchCachedSearchHistory();
+    final List<Location> history = [];
+    for (final id in location) {
+      final location = await CloudFirestore.fetchLocation(id.objectID); // Fetch location details
+      if (location != null) {
+        history.add(location);
+      }
     }
     setState(() {
-      _searchResults = results;
-      _isSearching = false;
+      _searchHistory = history; // Update the state with the fetched history
     });
   }
 
   void _onSearchChanged(String query) {
-    if (query.isNotEmpty) {
-      _performSearch(query);
-    } else {
-      setState(() {
-        _searchResults = [];
-      });
-    }
+    // Cancel any ongoing debounce timer
+    if (_searchDebounce?.isActive ?? false) _searchDebounce?.cancel();
+
+    // Set a new debounce timer
+    _searchDebounce = Timer(const Duration(milliseconds: 500), () {
+      // Perform search if query is not empty
+      if (query.isNotEmpty) {
+        _performSearch(query);
+      } else {
+        setState(() {
+          _searchResults = [];
+          _state = 0; // Reset state
+        });
+      }
+    });
   }
 
   void _onSearchBarTapped() {
@@ -250,9 +332,21 @@ class _SearchPageState extends State<SearchPage> {
       ),
     );
   }
-  Widget placeCard(String title, String distance, String imagePath,double stars) {
+  Widget placeCard(String title, double distance, String imagePath, double stars, String id) {
     return GestureDetector(
-      onTap: (){}, // Handle the navigation here
+      onTap: () async {
+        saveLastViewedBusiness(id);
+        final location = await CloudFirestore.fetchLocation(id);
+        if (location != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ViewScreenSearch(location: location),
+            ),
+          );
+        }
+
+      },
       child: Container(
         width: 180,
         height: 202,
@@ -260,7 +354,9 @@ class _SearchPageState extends State<SearchPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           image: DecorationImage(
-            image: AssetImage(imagePath),
+            image: imagePath.isNotEmpty
+                ? NetworkImage(imagePath)
+                : AssetImage('assets/images/default_image.jpg') as ImageProvider,
             fit: BoxFit.cover,
           ),
         ),
@@ -304,9 +400,10 @@ class _SearchPageState extends State<SearchPage> {
                       children: [
                         Icon(
                           Icons.location_on,
+                          size: 12,
                         ),
                         Text(
-                          distance,
+                          distance.toString(),
                           style: TextStyle(
                             color: Colors.black54,
                             fontSize: 12,
@@ -314,7 +411,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(height: 5),
                     Row(
                       children: List.generate(5, (index) {
                         return Icon(
@@ -325,7 +422,6 @@ class _SearchPageState extends State<SearchPage> {
                       }),
                     ),
                   ],
-
                 ),
               ),
             ),
@@ -386,18 +482,39 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           ),
-          SizedBox(
-            height: 220, // Set the height to fit the card
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  placeCard("Jimbaran Beach", "16.5 Km", "assets/images/beach1.jpg", 4.5),
-                  placeCard("Muaya Beach", "19.5 Km", "assets/images/beach2.jpg", 4.5),
-                  placeCard("Nusa Dua Beach", "25.5 Km", "assets/images/beach3.jpg", 4.0),
-                  placeCard("Seminyak Beach", "12.5 Km", "assets/images/beach4.jpg", 5.0),
-                ],
-              ),
+          Container(
+            height: 180, // Height of the horizontal list
+            child: FutureBuilder<List<Map<String, dynamic>>>(
+              future: _recommendationsFuture, // Fetch recommendations dynamically
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator()); // Show loading spinner
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}')); // Show error message
+                } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                  final recommendations = snapshot.data!;
+
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: recommendations.length,
+                    itemBuilder: (context, index) {
+                      final location = recommendations[index];
+                      return placeCard(
+                        location['name'] ?? 'Unknown Place', // Name of the location
+                        location['longitude'] ?? 'Unknown Distance', // Distance from the user
+                        location['image_urls'] != null && location['image_urls'].isNotEmpty
+                            ? location['image_urls'][0] // Use the first image in the list
+                            : 'assets/images/default_image.jpg',
+                        (location['stars'] ?? 0.0).toDouble(),
+                        location['id'] ?? '',
+                        //location['stars'] ?? 0
+                      );
+                    },
+                  );
+                } else {
+                  return Center(child: Text('No recommendations found.')); // No data available
+                }
+              },
             ),
           ),
           Padding(
@@ -426,39 +543,122 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ],
       );
-    } else if (_state == 1) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'You Search For',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(top: 8.0),
-              children: _searchHistory.map((location) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _searchController.text = location.name;
-                      _state = 2;
-                    });
-                    _performSearch(location.name);
-                  },
-                  child: _buildResultCard(location), // Display the location as a card
-                );
-              }).toList(),
-            ),
-          ),
-        ],
-      );
+    }
+    else if (_state == 1) {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        // Guest user: Use local cache
+        return FutureBuilder<List<Location>>(
+          future: _fetchCachedSearchHistory(), // Fetch cached search history
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator()); // Show loading indicator
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+              final searchHistory = snapshot.data!;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Your Search History (Guest)',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      itemCount: searchHistory.length,
+                      itemBuilder: (context, index) {
+                        final location = searchHistory[index];
+                        return GestureDetector(
+                          onTap: () {
+                            saveSearchToCache(location.objectID); // Save to cache
+                            _navigateToLocationDetails(location);
+                          },
+                          child: _buildResultCard(location), // Build result card with Location data
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Center(child: Text("You have no search history (Guest)."));
+            }
+          },
+        );
+      } else {
+        // Logged-in user: Use Firestore
+        return StreamBuilder<DocumentSnapshot>(
+          stream: FirebaseFirestore.instance.collection('Users').doc(user.uid).snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator()); // Show loading indicator
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (snapshot.hasData && snapshot.data!.data() != null) {
+              final userData = snapshot.data!.data() as Map<String, dynamic>;
+              final List<dynamic> searchHistoryIds = userData['last_10_searched'] ?? [];
+              if (searchHistoryIds.isEmpty) {
+                return Center(child: Text("You have no search history."));
+              }
+              return FutureBuilder<List<Location>>(
+                future: CloudFirestore().fetchSearchHistory(), // Fetch search history for logged-in user
+                builder: (context, historySnapshot) {
+                  if (historySnapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (historySnapshot.hasError) {
+                    return Center(child: Text('Error: ${historySnapshot.error}'));
+                  } else if (historySnapshot.hasData && historySnapshot.data!.isNotEmpty) {
+                    final searchHistory = historySnapshot.data!;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            'Your Search History',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            itemCount: searchHistory.length,
+                            itemBuilder: (context, index) {
+                              final location = searchHistory[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  CloudFirestore().saveLastViewedBusiness(location.objectID);
+                                  _navigateToLocationDetails(location);
+                                },
+                                child: _buildResultCard(location), // Build result card with Location data
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Center(child: Text("You have no search history."));
+                  }
+                },
+              );
+            } else {
+              return Center(child: Text("You have no search history."));
+            }
+          },
+        );
+      }
     }
     else if (_state == 2) {
       return Column(
@@ -486,7 +686,9 @@ class _SearchPageState extends State<SearchPage> {
                 itemBuilder: (context, index) {
                   final result = _searchResults[index];
                   return GestureDetector(
-                    onTap: () => _navigateToLocationDetails(result),
+                    onTap: () => {
+                      saveLastViewedBusiness(result.businessId),
+                      _navigateToLocationDetails(result),},
                     child: _buildResultCard(result),
                   );
                 },

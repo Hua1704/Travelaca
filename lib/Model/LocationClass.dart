@@ -7,11 +7,12 @@ class Location {
   final double latitude;
   final double longitude;
   final double stars;
-  final int reviewCount;
+  late final int reviewCount;
   final bool isOpen;
   final String categories;
   final String description;
   final List<String> imageURL;
+  final String state;
   Location({
     required this.objectID,
     required this.businessId,
@@ -26,7 +27,7 @@ class Location {
     required this.categories,
     required this.description,
     required this.imageURL,
-
+    required this.state,
   });
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
@@ -42,6 +43,7 @@ class Location {
       categories: (json['categories'] as String?) ?? 'Unknown',
       objectID: json['objectID'] ?? '',
       description: json['description'] ?? '',
+      state: json['state']??'',
       imageURL: (json['image_urls'] as List<dynamic>?)
           ?.map((url) => url.toString())
           .toList() ?? [], // Safely convert to List<String>

@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/Model/LocationClass.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:travelaca/Network/firebase_cloud_firesotre.dart';
+import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/AddReview.dart';
+
+import '../../../Model/Reviews.dart';
 class ViewScreenSearch extends StatefulWidget {
   final Location location;
 
@@ -21,6 +27,32 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
     2: 5,  // 5 reviews with 2 stars
     1: 10, // 10 reviews with 1 star
   };
+  Future<List<String>> fetchLastViewedBusinesses() async {
+    try {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        print("User not logged in.");
+        return [];
+      }
+
+      // Reference to the user's Firestore document
+      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user.uid);
+
+      // Get the user's last viewed businesses
+      final userDoc = await userDocRef.get();
+      if (userDoc.exists) {
+        List<dynamic> lastViewedList = userDoc.data()?['last_viewed_algolia_id'] ?? [];
+        return List<String>.from(lastViewedList); // Return as List<String>
+      } else {
+        print("User document does not exist.");
+        return [];
+      }
+    } catch (e) {
+      print("Error fetching last viewed businesses: $e");
+      return [];
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -247,15 +279,19 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                       ),
                     );
                   }).toList(),
-                  // Reviews Section
-                  Text(
-                    'Reviews (${widget.location.reviewCount})',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color:Color(0xFF17727F)),
-                  ),
-                  const SizedBox(height: 8),
                   ElevatedButton.icon(
                     onPressed: () {
-                      // Handle the button action
+                      Navigator.push(context,
+                        MaterialPageRoute(
+                        builder: (context) => AddReviewScreen(
+                        businessID: this.widget.location.businessId,  // ID of the location being reviewed
+                        name: this.widget.location.name,
+                        address: this.widget.location.address,
+                        locationImage: this.widget.location.imageURL[0],
+                          city: this.widget.location.city,
+                          state: this.widget.location.state,
+                        ),
+                      ),);
                     },
                     icon: Icon(
                       Icons.edit,
@@ -275,6 +311,101 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                       ),
                     ),
                   ),
+                  Text(
+                    'Reviews (${widget.location.reviewCount})',
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color:Color(0xFF17727F)),
+                  ),
+                  const SizedBox(height: 8),
+                  FutureBuilder<List<Map<String, dynamic>>>(
+                    future: CloudFirestore().fetchReviews(widget.location.businessId), // Use the new fetch function
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      if (snapshot.hasError) {
+                        return Center(child: Text("Error: ${snapshot.error}"));
+                      }
+                      if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return Center(child: Text("No reviews yet."));
+                      }
+
+                      final reviews = snapshot.data!;
+
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: reviews.length,
+                        itemBuilder: (context, index) {
+                          final review = reviews[index];
+
+                          return Card(
+                            margin: EdgeInsets.symmetric(vertical: 8.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 25,
+                                        backgroundImage: NetworkImage(review['user_avatar_url']),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            review['username'], // Display the fetched username
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold, fontSize: 16),
+                                          ),
+                                          Text(
+                                            review['date'].toString(),
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    review['content'],
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: List.generate(
+                                          review['stars'],
+                                              (index) => Icon(Icons.star,
+                                              color: Colors.amber, size: 16),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.thumb_up, size: 16, color: Colors.green),
+                                          SizedBox(width: 5),
+                                          Text("${review['likes']}"),
+                                          SizedBox(width: 10),
+                                          Icon(Icons.thumb_down, size: 16, color: Colors.red),
+                                          SizedBox(width: 5),
+                                          Text("${review['dislikes']}"),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  )
+
                 ],
               ),
             ),

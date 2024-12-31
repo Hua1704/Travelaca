@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelaca/ScreenPresentation/HomePage/HomepageScreen.dart';
 import 'package:travelaca/ScreenPresentation/SearchScreen/SearchPage.dart';
 import 'package:travelaca/MainPage.dart';
+import 'package:travelaca/ScreenPresentation/LoginScreen/LoginScreen.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -103,13 +104,12 @@ class SplashScreen extends StatelessWidget {
                     const SizedBox(height: 40),
                     ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                       },
                       icon: const Icon(Icons.flight_takeoff),
                       label: const Text('Your Journey Starts Here'),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.teal,
-                        onPrimary: Colors.white,
+                        foregroundColor: Colors.white, backgroundColor: Colors.teal,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
