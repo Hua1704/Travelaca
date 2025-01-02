@@ -11,6 +11,9 @@ import '../../../Model/Reviews.dart';
 import '../../../Network/auth.dart';
 import 'package:travelaca/MainPage.dart';
 import 'package:travelaca/ScreenPresentation/ViewScreen/BusinessView/EditLocation.dart';
+
+import '../../LoginScreen/LoginScreen.dart';
+import '../../OfflineScreen/OfflineHome.dart';
 class BusinessDashboardScreen extends StatefulWidget {
   final Location? location;
 
@@ -42,7 +45,6 @@ class _BusinessDashboardScreen extends State<BusinessDashboardScreen> {
         ),
       );
     }
-
     return Scaffold(
       body: StreamBuilder<DocumentSnapshot>(
         // Listen for updates to the location document in Firestore
@@ -89,13 +91,24 @@ class _BusinessDashboardScreen extends State<BusinessDashboardScreen> {
                     right: 16,
                     child: IconButton(
                       icon: Icon(Icons.mode_edit_outline_outlined, color: Colors.white),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EditLocationScreen(location: location),
-                          ),
-                        );
+                      onPressed: () async {
+                        bool hasConnection = await checkConnection();
+                        if (hasConnection) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditLocationScreen(location: location),
+                            ),
+                          );
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
+                            ),
+                          );
+                        }
+
                       },
                     ),
                   ),

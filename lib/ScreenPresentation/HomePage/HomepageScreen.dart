@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen>{
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   void initState() {
     super.initState();
-    NetworkManager().startMonitoring(context, HomeScreen(onSearchTapped: widget.onSearchTapped), OfflineHomeScreen());
     _recommendationsFuture = CloudFirestore().fetchRecommendationsForUser();
   }
   Future<void> saveLastViewedBusiness(String businessId) async {
@@ -328,16 +327,27 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget placeCard(String title,String address, String imagePath, double stars, String id) {
         return GestureDetector(
           onTap: () async {
-            saveLastViewedBusiness(id);
-            final location = await CloudFirestore.fetchLocation(id);
-            if (location != null) {
-              Navigator.push(
+            bool hasConnection = await checkConnection();
+            if (hasConnection) {
+              saveLastViewedBusiness(id);
+              final location = await CloudFirestore.fetchLocation(id);
+              if (location != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ViewScreenSearch(location: location),
+                  ),
+                );
+              }
+            } else {
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ViewScreenSearch(location: location),
+                  builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
                 ),
               );
             }
+
           },
           child: Container(
             width: 180,

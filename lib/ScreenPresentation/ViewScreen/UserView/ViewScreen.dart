@@ -9,6 +9,7 @@ import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/AddReview.dart'
 import 'package:geolocator/geolocator.dart';
 import '../../../Model/Reviews.dart';
 import '../../../Network/auth.dart';
+import '../../OfflineScreen/OfflineHome.dart';
 class ViewScreenSearch extends StatefulWidget {
   final Location? location;
 
@@ -332,26 +333,37 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                   }).toList(),
                   ElevatedButton.icon(
                     onPressed: () async {
-                      final existingReview = await FirebaseFirestore.instance
-                          .collection("Reviews")
-                          .where("business_id", isEqualTo: widget.location!.businessId)
-                          .where("user_id", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
-                          .get()
-                          .then((querySnapshot) => querySnapshot.docs.isNotEmpty
-                          ? querySnapshot.docs.first.data()
-                          : null);
-                      Navigator.push(context,
-                        MaterialPageRoute(
-                        builder: (context) => AddReviewScreen(
-                        businessID: this.widget.location!.businessId,  // ID of the location being reviewed
-                        name: this.widget.location!.name,
-                        address: this.widget.location!.address,
-                        locationImage: this.widget.location!.imageURL[0],
-                          city: this.widget.location!.city,
-                          state: this.widget.location!.state,
-                          existingReview: existingReview,
-                        ),
-                      ),);
+                      bool hasConnection = await checkConnection();
+                      if(hasConnection) {
+                        final existingReview = await FirebaseFirestore.instance
+                            .collection("Reviews")
+                            .where("business_id", isEqualTo: widget.location!.businessId)
+                            .where("user_id", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+                            .get()
+                            .then((querySnapshot) => querySnapshot.docs.isNotEmpty
+                            ? querySnapshot.docs.first.data()
+                            : null);
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                            builder: (context) => AddReviewScreen(
+                              businessID: this.widget.location!.businessId,  // ID of the location being reviewed
+                              name: this.widget.location!.name,
+                              address: this.widget.location!.address,
+                              locationImage: this.widget.location!.imageURL[0],
+                              city: this.widget.location!.city,
+                              state: this.widget.location!.state,
+                              existingReview: existingReview,
+                            ),
+                          ),);
+                      }
+                      else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
+                          ),
+                        );
+                      }
                     },
                     icon: Icon(
                       Icons.edit,

@@ -15,6 +15,7 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Network/auth.dart';
 import '../../Network/firebase_cloud_firesotre.dart';
+import '../OfflineScreen/OfflineHome.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -715,11 +716,24 @@ class _SearchPageState extends State<SearchPage> {
                 itemCount: _filteredResults.length,
                 itemBuilder: (context, index) {
                   final result = _filteredResults[index];
+                  bool hasConnection;
                   return GestureDetector(
-                    onTap: () => {
-                      saveLastViewedBusiness(result.businessId),
-                      _navigateToLocationDetails(result),},
-                    child: _buildResultCard(result),
+                    onTap: () async =>
+                    {
+                      hasConnection = await checkConnection(),
+                      if (hasConnection) {
+                        saveLastViewedBusiness(result.businessId),
+                        _navigateToLocationDetails(result)}
+                      else
+                        {
+                    Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
+                    ),
+                  ),
+                        }
+                    },child: _buildResultCard(result),
                   );
                 },
               ),

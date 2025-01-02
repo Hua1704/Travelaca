@@ -68,11 +68,23 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  void onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    _pageController.jumpToPage(index);
+  Future<void> onItemTapped(int index) async {
+    bool hasConnection = await checkConnection();
+    if(hasConnection) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      _pageController.jumpToPage(index);
+    }
+    else
+      {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
+          ),
+        );
+      }
   }
 
   @override

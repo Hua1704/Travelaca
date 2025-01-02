@@ -4,6 +4,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import '../../utils/NetworkMonitor.dart';
 import 'package:travelaca/MainPage.dart';
+import 'package:travelaca/MainPage.dart';
+
+import 'OfflineSavedLocation.dart'; // Your online page file
 
 import '../LoginScreen/LoginScreen.dart'; // Your online page file
 Future<bool> checkConnection() async {
@@ -87,7 +90,18 @@ class _OfflineHomeScreenState extends State<OfflineHomeScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Force refresh to check connection
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SavedLocationsScreen(),
+                  ),
+                );
+              },
+              child: Text('See Saved'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+
                 setState(() {});
               },
               child: Text('Retry'),
