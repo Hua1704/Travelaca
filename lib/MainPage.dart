@@ -7,8 +7,10 @@ import 'package:travelaca/ScreenPresentation/SplashScreen/SplashScreen.dart';
 import 'package:travelaca/ScreenPresentation/ReviewScreen/ReviewScreen.dart';
 import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/ViewScreen.dart';
 import 'package:travelaca/ScreenPresentation/AccountScreen/Account.dart';
+import 'package:travelaca/utils/NetworkMonitor.dart';
 import 'Model/LocationClass.dart';
 import 'ScreenPresentation/AccountScreen/GuestSettings.dart';
+import 'ScreenPresentation/OfflineScreen/OfflineHome.dart';
 import 'ScreenPresentation/ViewScreen/BusinessView/BusinessViewScreen.dart';
 
 class MainPage extends StatefulWidget {
@@ -16,7 +18,6 @@ class MainPage extends StatefulWidget {
   final String role; // User role (Traveller, Business Owner, or Guest)
 
   MainPage({required this.userId, required this.role});
-
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -31,8 +32,8 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+
     if (widget.role.isEmpty || widget.userId.isEmpty) {
-      // Guest
       _pages = [
         HomeScreen(onSearchTapped: () => onItemTapped(1)),
         SearchPage(),

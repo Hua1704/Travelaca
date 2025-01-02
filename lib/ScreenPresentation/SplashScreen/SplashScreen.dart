@@ -1,11 +1,34 @@
+import 'dart:io';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/ScreenPresentation/HomePage/HomepageScreen.dart';
 import 'package:travelaca/ScreenPresentation/SearchScreen/SearchPage.dart';
 import 'package:travelaca/MainPage.dart';
 import 'package:travelaca/ScreenPresentation/LoginScreen/LoginScreen.dart';
+import 'package:travelaca/ScreenPresentation/OfflineScreen/OfflineHome.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
+  Future<bool> checkConnection() async {
+    try {
+      // Check the connectivity status
+      var connectivityResult = await Connectivity().checkConnectivity();
 
+      if (connectivityResult == ConnectivityResult.none) {
+        // No network detected
+        return false;
+      }
+      // Check actual internet access
+      final result = await InternetAddress.lookup('example.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
+      }
+    } catch (e) {
+      // Handle exceptions, such as no network or DNS issues
+      print("Error checking internet connection: $e");
+    }
+    return false; // Default to no connection if checks fail
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,8 +126,24 @@ class SplashScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                      onPressed: () async {
+                        // Check connection and navigate
+                        bool hasConnection = await checkConnection();
+                        if (hasConnection) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                          );
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
+                            ),
+                          );
+                        }
                       },
                       icon: const Icon(Icons.flight_takeoff),
                       label: const Text('Your Journey Starts Here'),

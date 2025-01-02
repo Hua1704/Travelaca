@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
-import 'OfflineSavedLocation.dart';
-class OfflineHomeScreen extends StatelessWidget {
+import '../../utils/NetworkMonitor.dart';
+import 'package:travelaca/MainPage.dart'; // Your online page file
+
+class OfflineHomeScreen extends StatefulWidget {
+  @override
+  _OfflineHomeScreenState createState() => _OfflineHomeScreenState();
+}
+
+class _OfflineHomeScreenState extends State<OfflineHomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    NetworkManager().startMonitoring(context, MainPage(userId: "", role: ""), OfflineHomeScreen());
+  }
+
+  @override
+  void dispose() {
+    NetworkManager().stopMonitoring();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,19 +38,17 @@ class OfflineHomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Please check your internet or see your saved locations in offline mode.',
+              'Please check your internet connection.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SavedLocationsScreen()),
-                );
+                // Force refresh to check connection
+                setState(() {});
               },
-              child: Text('See Saved Locations'),
+              child: Text('Retry'),
             ),
           ],
         ),

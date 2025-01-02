@@ -9,7 +9,9 @@ import 'package:travelaca/ScreenPresentation/SearchScreen/SearchPage.dart';
 import 'package:travelaca/Network/firebase_cloud_firesotre.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../Model/LocationClass.dart';
+import '../OfflineScreen/OfflineHome.dart';
 import '../ViewScreen/UserView/ViewScreen.dart';
+import 'package:travelaca/utils/NetworkMonitor.dart';
   class HottestTrend {
     final String? imageLink;
     final String? title;
@@ -28,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen>{
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   void initState() {
     super.initState();
+    NetworkManager().startMonitoring(context, HomeScreen(onSearchTapped: widget.onSearchTapped), OfflineHomeScreen());
     _recommendationsFuture = CloudFirestore().fetchRecommendationsForUser();
   }
   Future<void> saveLastViewedBusiness(String businessId) async {
@@ -179,8 +182,7 @@ class _HomeScreenState extends State<HomeScreen>{
                         final location = recommendations[index];
                         return placeCard(
                           location['name'] ?? 'Unknown Place',
-                          location['latitude'] ?? 0.0,// Name of the location
-                          location['longitude'] ?? 0.0,
+                          location['address'] ?? 'Unknown place',
                           // Distance from the user
                           location['image_urls'] != null && location['image_urls'].isNotEmpty
                               ? location['image_urls'][0] // Use the first image in the list
@@ -323,30 +325,7 @@ class _HomeScreenState extends State<HomeScreen>{
     );
   }
 
-  Widget placeCard(String title, double locationLat, double locationLng, String imagePath, double stars, String id) {
-    return FutureBuilder<Position>(
-      future: Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high),
-
-      builder: (context, snapshot) {
-        String distanceText = "Calculating..."; // Default text while calculating
-
-        if (snapshot.hasData) {
-          // Calculate the distance using Geolocator
-          Position userPosition = snapshot.data!;
-
-          double distance = Geolocator.distanceBetween(
-
-            userPosition.latitude,
-            userPosition.longitude,
-            locationLat,
-            locationLng,
-          );
-          distanceText = "${(distance / 1000).toStringAsFixed(2)} km"; // Convert to kilometers
-        } else if (snapshot.hasError) {
-          // Handle errors (e.g., location not available)
-          distanceText = "Unable";
-        }
-
+  Widget placeCard(String title,String address, String imagePath, double stars, String id) {
         return GestureDetector(
           onTap: () async {
             saveLastViewedBusiness(id);
@@ -416,7 +395,7 @@ class _HomeScreenState extends State<HomeScreen>{
                               size: 12,
                             ),
                             Text(
-                              distanceText, // Display the dynamic distance
+                              address, // Display the dynamic distance
                               style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 12,
@@ -442,8 +421,8 @@ class _HomeScreenState extends State<HomeScreen>{
             ),
           ),
         );
-      },
-    );
+
+
   }
 
 }

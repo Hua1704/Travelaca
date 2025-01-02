@@ -384,7 +384,7 @@ class _SearchPageState extends State<SearchPage> {
       ),
     );
   }
-  Widget placeCard(String title, double distance, String imagePath, double stars, String id) {
+  Widget placeCard(String title, String address, String imagePath, double stars, String id) {
     return GestureDetector(
       onTap: () async {
         saveLastViewedBusiness(id);
@@ -455,7 +455,7 @@ class _SearchPageState extends State<SearchPage> {
                           size: 12,
                         ),
                         Text(
-                          distance.toString(),
+                          address,
                           style: TextStyle(
                             color: Colors.black54,
                             fontSize: 12,
@@ -553,7 +553,7 @@ class _SearchPageState extends State<SearchPage> {
                       final location = recommendations[index];
                       return placeCard(
                         location['name'] ?? 'Unknown Place', // Name of the location
-                        location['longitude'] ?? 'Unknown Distance', // Distance from the user
+                        location['address'] ?? 'Unknown place', // Distance from the user
                         location['image_urls'] != null && location['image_urls'].isNotEmpty
                             ? location['image_urls'][0] // Use the first image in the list
                             : 'assets/images/default_image.jpg',
