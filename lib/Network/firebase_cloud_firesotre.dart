@@ -1,8 +1,12 @@
 import 'package:algolia_client_recommend/algolia_client_recommend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:travelaca/Model/LocationClass.dart';
 import 'package:travelaca/Model/Reviews.dart';
+final String algoliaAppId = dotenv.env['ALGOLIA_APPLICATION_ID']!;
+final String algoliaApiKey = dotenv.env['ALGOLIA_API_KEY']!;
+final String algoliaIndexName = dotenv.env['ALGOLIA_INDEX_NAME']!;
 class CloudFirestore {
   final db = FirebaseFirestore.instance;
 
@@ -232,8 +236,8 @@ class CloudFirestore {
     try {
       // Initialize the Algolia Recommend Client
       final client = RecommendClient(
-        appId: 'II0KZCI1S7',
-        apiKey: 'c7098683e22377aabe4633f00fc116dd',
+        appId: algoliaAppId,
+        apiKey: algoliaApiKey,
       );
 
       // Create LookingSimilarQuery requests for each last viewed ID
@@ -241,7 +245,7 @@ class CloudFirestore {
         return LookingSimilarQuery(
           model: LookingSimilarModel.fromJson("looking-similar"),
           objectID: id,
-          indexName: 'dev_locations',
+          indexName: algoliaIndexName,
           threshold: 50,
           maxRecommendations: 3,
         );
