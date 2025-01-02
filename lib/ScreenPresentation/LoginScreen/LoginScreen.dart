@@ -81,11 +81,11 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 100),
               Row (
                 mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                'Log in',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              ),],
+                children: [
+                  Text(
+                    'Log in',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  ),],
               ),
               SizedBox(height: 30),
               Container(
@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Text('Or log in using',
                 style: TextStyle(
                   color: Colors.black,
-              ),
+                ),
               ),
               SizedBox(height: 10),
               Row(
@@ -188,9 +188,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 24,
                     ),
                     label: Text('Google',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),),
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),),
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(170, 50), // Width: 170, Height: 50
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -204,13 +204,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       size: 30,
                     ),
                     label: Text('Facebook',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),),
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(170, 50), // Width: 120, Height: 50
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      backgroundColor: Colors.blueAccent// Adjust padding
+                        minimumSize: Size(170, 50), // Width: 120, Height: 50
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        backgroundColor: Colors.blueAccent// Adjust padding
                     ),
                   ),
                 ],
@@ -224,31 +224,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           builder: (context) => SignUpScreen()));
                 },
                 child: Text("Don't have an account yet? Sign up",
-                style: TextStyle(
-                  color: Color(0xFF17727F)
-                ),),
+                  style: TextStyle(
+                      color: Color(0xFF17727F)
+                  ),),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MainPage(
-                          userId: "", // Pass the user ID
-                          role: "", // Pass the user role
-                        ),
-                      ),);
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MainPage(
+                        userId: "", // Pass the user ID
+                        role: "", // Pass the user role
+                      ),
+                    ),);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                   backgroundColor: Colors.black,
                 ),
                 child: Text('Continue as Guest',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.1,

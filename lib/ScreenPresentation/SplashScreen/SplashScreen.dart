@@ -88,17 +88,17 @@ class SplashScreen extends StatelessWidget {
                       'Ready to explore\nbeyond boundaries?',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.bold,
-                        shadows: [
-                          Shadow(
-                            color: Colors.white.withOpacity(0.8),
-                            blurRadius: 8,
-                            offset: Offset(0, 0),
-                          ),
-                        ]
+                          fontSize: 28,
+                          color: Colors.white,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: Colors.white.withOpacity(0.8),
+                              blurRadius: 8,
+                              offset: Offset(0, 0),
+                            ),
+                          ]
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -129,6 +129,4 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
-
-
 

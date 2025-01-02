@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FilterButton extends StatefulWidget {
@@ -72,4 +73,11 @@ class _FilterButtonState extends State<FilterButton> {
       ),
     );
   }
+}
+
+bool isGuestUser() {
+  final user = FirebaseAuth.instance.currentUser;
+
+  // Check if user is null (no logged-in user) or a temporary guest session
+  return user == null || user.isAnonymous;
 }

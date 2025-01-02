@@ -1,16 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:travelaca/ScreenPresentation/HomePage/BusinessHomepage.dart';
 import 'package:travelaca/ScreenPresentation/SearchScreen/SearchPage.dart';
 import 'package:travelaca/ScreenPresentation/HomePage/HomepageScreen.dart';
 import 'package:travelaca/ScreenPresentation/SplashScreen/SplashScreen.dart';
-import 'package:travelaca/ScreenPresentation/ReviewScreen//ReviewScreen.dart';
+import 'package:travelaca/ScreenPresentation/ReviewScreen/ReviewScreen.dart';
 import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/ViewScreen.dart';
 import 'package:travelaca/ScreenPresentation/AccountScreen/Account.dart';
-
+import 'Model/LocationClass.dart';
 import 'ScreenPresentation/AccountScreen/GuestSettings.dart';
-final GlobalKey<_MainPageState> mainPageKey = GlobalKey<_MainPageState>();
+import 'ScreenPresentation/ViewScreen/BusinessView/BusinessViewScreen.dart';
+
 class MainPage extends StatefulWidget {
   final String userId; // Firebase User ID
-  final String role; // User role (Traveller or Business)
+  final String role; // User role (Traveller, Business Owner, or Guest)
 
   MainPage({required this.userId, required this.role});
 
@@ -20,71 +23,64 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0; // Track the selected tab index.
-  final List<int> _history = []; // Track the navigation history.
-  String selectedName = '';
-  String selectedAddress = '';
-  String selectedCategory = '';
-  double selectedStars = 0.0;
-  int selectedReviewCount = 0;
-  bool selectedStatus = false;
+  final PageController _pageController = PageController(); // Controller for navigation
+  Location? selectedLocation; // Store the selected location
+
   late final List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
-
-    // Dynamically initialize pages based on role or guest
-    if (widget.role == "" || widget.userId == "") {
-      // Guest user: Limited access
+    if (widget.role.isEmpty || widget.userId.isEmpty) {
+      // Guest
       _pages = [
         HomeScreen(onSearchTapped: () => onItemTapped(1)),
         SearchPage(),
-        GuestSettingsScreen(), // Navigate to Guest Settings Screen
+        GuestSettingsScreen(),
       ];
-    }
-    else if (widget.role == "Traveller") {
-      // Traveller role
+    } else if (widget.role == "Traveller") {
+      // Traveller
       _pages = [
         HomeScreen(onSearchTapped: () => onItemTapped(1)),
         SearchPage(),
         ReviewScreen(),
-        AccountScreen(userId: widget.userId!), // Pass userId to AccountScreen
+        AccountScreen(userId: widget.userId),
       ];
     } else if (widget.role == "Business Owner") {
-      // Business role
+      // Business Owner
       _pages = [
-        HomeScreen(onSearchTapped: () => onItemTapped(1)),
-        SearchPage(),
-        //BusinessDashboardScreen(), // Custom page for Business role
-        AccountScreen(userId: widget.userId!), // Pass userId to AccountScreen
+        BusinessHomePage(
+          userId: widget.userId,
+          onLocationSelected: (location) {
+            setState(() {
+              selectedLocation = location;
+              _selectedIndex = 1; // Dashboard tab index
+            });
+            onItemTapped(1);
+          },
+        ),
+        Builder(
+          builder: (context) => BusinessDashboardScreen(location: selectedLocation),
+        ),
+        AccountScreen(userId: widget.userId),
       ];
     }
   }
 
   void onItemTapped(int index) {
-    // Add the current index to the history before switching tabs.
-    if (_selectedIndex != index) {
-      _history.add(_selectedIndex);
-    }
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  void navigateBack() {
-    if (_history.isNotEmpty) {
-      setState(() {
-        _selectedIndex = _history.removeLast();
-      });
-    }
+    _pageController.jumpToPage(index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages, // Use dynamically configured pages
+      body: PageView(
+        controller: _pageController,
+        physics: NeverScrollableScrollPhysics(), // Prevent swiping between pages
+        children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -93,15 +89,28 @@ class _MainPageState extends State<MainPage> {
         unselectedItemColor: Colors.grey,
         onTap: onItemTapped,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          if (widget.role == "Traveller")
-            BottomNavigationBarItem(icon: Icon(Icons.visibility), label: "View")
-          else if(widget.role=="Business Owner")
+          if (widget.role.isEmpty || widget.userId.isEmpty) ...[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Account"),
+          ] else if (widget.role == "Traveller") ...[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+            BottomNavigationBarItem(icon: Icon(Icons.rate_review), label: "Review"),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Account"),
+          ] else if (widget.role == "Business Owner") ...[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: "Dashboard"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Account"),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Account"),
+          ]
         ],
       ),
     );
   }
 }
+
+
+
+
+// Dummy Location Class
+

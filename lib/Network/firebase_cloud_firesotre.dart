@@ -33,12 +33,9 @@ class CloudFirestore {
       if (user != null) {
         final firestore = FirebaseFirestore.instance;
         final userRef = firestore.collection('Users').doc(user.uid);
-
-        // Update the `last_10_search` array in the user document
         await userRef.set({
           'last_10_searched': FieldValue.arrayUnion([locationId]),
         }, SetOptions(merge: true));
-
         // Optionally, keep the array size limited to the last 10 searches
         final snapshot = await userRef.get();
         if (snapshot.exists) {
@@ -67,7 +64,6 @@ class CloudFirestore {
         if (userDoc.exists) {
           final data = userDoc.data();
           final List<dynamic>? searchIds = data?['last_10_searched'];
-
           if (searchIds != null) {
             List<Location> locations = [];
             for (String id in searchIds) {
@@ -89,14 +85,12 @@ class CloudFirestore {
     }
     return [];
   }
-
   Future<String?> fetchUserName(String userId) async {
     try {
       final DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
           .collection('Users') // Firestore collection name
           .doc(userId) // Match the userId
           .get();
-
       if (snapshot.exists) {
         final data = snapshot.data();
         return data?['username']; // Fetch the username field
@@ -105,36 +99,35 @@ class CloudFirestore {
       }
     } catch (e) {
       print("Error fetching user: $e");
-      return null; // Handle errors gracefully
+      return null;
     }
   }
-  Future<List<Map<String, dynamic>>> fetchReviews(String businessID) async {
-    final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
-        .collection('Reviews') // Firestore collection name
+  Stream<List<Map<String, dynamic>>> streamReviews(String businessID) {
+    final reviewsCollection = FirebaseFirestore.instance
+        .collection('Reviews')
         .where('business_id', isEqualTo: businessID)
-        .orderBy('date', descending: true) // Sort reviews by date (newest first)
-        .get();
-    List<Map<String, dynamic>> reviewsWithUserNames = [];
+        .orderBy('date', descending: true);
 
-    for (var doc in snapshot.docs) {
-      final reviewData = doc.data();
+    return reviewsCollection.snapshots().asyncMap((snapshot) async {
+      List<Map<String, dynamic>> reviewsWithUserNames = [];
 
-      // Fetch userName using userID
-      final String? userName = await CloudFirestore().fetchUserName(reviewData['user_id']);
+      for (var doc in snapshot.docs) {
+        final reviewData = doc.data();
+        final String? userName = await CloudFirestore().fetchUserName(reviewData['user_id']);
+        reviewsWithUserNames.add({
+          ...reviewData, // Include all review data
+          'username': userName ?? 'Unknown', // Add username or default to 'Unknown'
+        });
+      }
 
-      reviewsWithUserNames.add({
-        ...reviewData, // Include all review data
-        'username': userName ?? 'Unknown', // Add username or default to 'Unknown'
-      });
-    }
-
-    return reviewsWithUserNames;
+      return reviewsWithUserNames;
+    });
   }
+
   static Future<Location?> fetchLocation(String id) async {
     try {
       // Access the Firestore instance
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
       // Query the "Locations" collection for the document with the given ID
       final DocumentSnapshot<Map<String, dynamic>> snapshot =
       await firestore.collection('Locations').doc(id).get();
@@ -174,10 +167,8 @@ class CloudFirestore {
           lastViewedList.remove(businessId);
         }
 
-        // Add the new businessId at the start
         lastViewedList.insert(0,businessId);
 
-        // Keep only the last 3 entries
         if (lastViewedList.length > 3) {
           lastViewedList = lastViewedList.sublist(0, 3);
         }

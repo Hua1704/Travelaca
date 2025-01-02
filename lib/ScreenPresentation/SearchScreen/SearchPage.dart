@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/MainPage.dart';
 import 'package:travelaca/Model/SearchService.dart';
@@ -12,6 +13,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../Network/auth.dart';
 import '../../Network/firebase_cloud_firesotre.dart';
 
 class SearchPage extends StatefulWidget {
@@ -22,6 +24,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
   List<Location> _searchResults = [];
+  List<Location> _filteredResults = [];
+  List<String> _selectedFilters = [];
   bool _isSearching = false;
   Timer? _searchDebounce;
   int _state = 0; // 0 = Recommendations, 1 = Search History, 2 = Search with Filters
@@ -32,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
     final User? user = FirebaseAuth.instance.currentUser;
     super.initState();
     _recommendationsFuture = CloudFirestore().fetchRecommendationsForUser();
-    if(user==null)
+    if(Auth().currentUser==null)
       {
         _loadSearchHistoryForGuest();
       }
@@ -56,12 +60,32 @@ class _SearchPageState extends State<SearchPage> {
 
     // Save the updated search history back to cache
     await prefs.setStringList('guest_search_history', searchHistory);
+    print('save to cache');
   }
   Future<List<Location>> _fetchCachedSearchHistory() async {
-    final prefs = await SharedPreferences.getInstance();
-    final cachedHistory = prefs.getStringList('guest_search_history') ?? [];
-    final locations = cachedHistory.map((e) => Location.fromJson(jsonDecode(e))).toList();
-    return locations;
+    try {
+      // Get the cached IDs
+      final prefs = await SharedPreferences.getInstance();
+      final cachedHistory = prefs.getStringList('guest_search_history') ?? [];
+
+      if (cachedHistory.isEmpty) {
+        return [];
+      }
+
+      // Fetch the location details for each ID from Firestore
+      final List<Location> locations = [];
+      for (final id in cachedHistory) {
+        final location = await CloudFirestore.fetchLocation(id);
+        if (location != null) {
+          locations.add(location);
+        }
+      }
+
+      return locations;
+    } catch (e) {
+      print("Error fetching cached search history: $e");
+      return [];
+    }
   }
   late final List<Location> _searchHistory;
   void _loadSearchHistory() async {
@@ -73,27 +97,22 @@ class _SearchPageState extends State<SearchPage> {
   Future<void> saveLastViewedBusiness(String businessId) async {
     try {
       final User? user = FirebaseAuth.instance.currentUser;
-      if (user == null) {
+      if (isGuestUser()) {
         print("User not logged in.");
         return;
       }
-
       // Reference to the user's Firestore document
-      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user.uid);
+      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user?.uid);
 
       // Get the current last_viewed_algolia_id array
       final userDoc = await userDocRef.get();
       if (userDoc.exists) {
         List<dynamic> lastViewedList = userDoc.data()?['last_viewed_algolia_id'] ?? [];
-        lastViewedList = List<String>.from(lastViewedList); // Cast to List<String>
-
-        // Add the new business ID and trim the list to the last 3 items
-        lastViewedList.insert(0, businessId); // Add the new business ID at the start
+        lastViewedList = List<String>.from(lastViewedList);
+        lastViewedList.insert(0, businessId);
         if (lastViewedList.length > 3) {
-          lastViewedList = lastViewedList.sublist(0, 3); // Keep only the last 3
+          lastViewedList = lastViewedList.sublist(0, 3);
         }
-
-        // Update Firestore
         await userDocRef.update({'last_viewed_algolia_id': lastViewedList});
         print("Last viewed business updated: $lastViewedList");
       } else {
@@ -109,51 +128,68 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> _performSearch(String query) async {
-    final User? user = FirebaseAuth.instance.currentUser;
-    if (query.isEmpty) {
-      setState(() {
-        _searchResults = [];
-        _state = 0; // Reset state
-      });
-      return;
-    }
-
     setState(() {
       _isSearching = true;
-      _searchResults = [];
-      _state = 2; // Switch to Search with Filters
     });
-
-    try {
-      final results = await _searchService.performSearch(query);
-
-      // Save the searched location ID to Firebase
-      if (results.isNotEmpty) {
-        if(user == null) {
-          CloudFirestore().saveUserSearch(results.first.objectID);
-          CloudFirestore().saveUserSearch(results[1].objectID);
-          CloudFirestore().saveUserSearch(results[2].objectID);
-        }
-        else
-          {
-            await saveSearchToCache(results.first.objectID);
-            await saveSearchToCache(results[1].objectID);
-            await saveSearchToCache(results[2].objectID);
+    if(query.isEmpty == false) {
+      try {
+        _searchResults = await _searchService.performSearch(query);
+        setState(() {
+          _filteredResults = List.from(_searchResults);
+          _isSearching = false;
+          if (Auth().currentUser != null) {
+            CloudFirestore().saveUserSearch(_filteredResults[0].businessId);
+            CloudFirestore().saveUserSearch(_filteredResults[1].businessId);
+            CloudFirestore().saveUserSearch(_filteredResults[2].businessId);
           }
+          else {
+            saveSearchToCache(_filteredResults[0].businessId);
+            saveSearchToCache(_filteredResults[1].businessId);
+            saveSearchToCache(_filteredResults[2].businessId);
+          }
+        });
+      }
+      catch (e) {
+        print("Error during search: $e");
+        setState(() {
+          _isSearching = false;
+          _searchResults = [];
+          _filteredResults = [];
+        });
+      }
+    }
+
+  }
+  void _applyFilters(String filter) {
+    setState(() {
+      if (_selectedFilters.contains(filter)) {
+        // If filter is already selected, remove it
+        _selectedFilters.remove(filter);
+      } else {
+        // Add the filter in order
+        _selectedFilters.add(filter);
       }
 
-      setState(() {
-        _searchResults = results;
-        _isSearching = false;
-      });
-    } catch (e) {
-      print("Error during search: $e");
-      setState(() {
-        _isSearching = false;
-        _searchResults = [];
-      });
-    }
+      // Start with the original search results
+      List<Location> filtered = List.from(_searchResults);
+
+      // Apply filters in the order they are in _selectedFilters
+      for (String selectedFilter in _selectedFilters) {
+        filtered = filtered.where((location) {
+          return location.categories.toLowerCase().contains(selectedFilter.toLowerCase());
+        }).toList();
+      }
+
+      // Update the filtered results
+      _filteredResults = filtered;
+      // If no filters are selected, reset to original search results
+      if (_selectedFilters.isEmpty) {
+        _filteredResults = List.from(_searchResults);
+      }
+    });
   }
+
+
   void _loadSearchHistoryForGuest() async {
     final location = await _fetchCachedSearchHistory();
     final List<Location> history = [];
@@ -162,25 +198,31 @@ class _SearchPageState extends State<SearchPage> {
       if (location != null) {
         history.add(location);
       }
+        print(location?.businessId);
+
     }
     setState(() {
       _searchHistory = history; // Update the state with the fetched history
     });
   }
 
+
   void _onSearchChanged(String query) {
     // Cancel any ongoing debounce timer
     if (_searchDebounce?.isActive ?? false) _searchDebounce?.cancel();
 
-    // Set a new debounce timer
-    _searchDebounce = Timer(const Duration(milliseconds: 500), () {
+    _searchDebounce = Timer(const Duration(milliseconds: 100), () {
       // Perform search if query is not empty
       if (query.isNotEmpty) {
         _performSearch(query);
+        setState(() {
+          _state = 2;
+        });
       } else {
         setState(() {
           _searchResults = [];
-          _state = 0; // Reset state
+          _filteredResults =[];
+          _state = 1; // Reset state
         });
       }
     });
@@ -190,37 +232,42 @@ class _SearchPageState extends State<SearchPage> {
     setState(() {
       if (_state == 0) {
         _state = 1; // Move to Search History
-      } else {
+      } else if(_state ==1)
+      {
         _state = 2; // Move to Search with Filters
       }
+
     });
   }
+
   void _onCancelTapped() async {
-    // Dismiss the keyboard
+    // Dismiss the keyboard and reset state
     FocusScope.of(context).unfocus();
-    // Add a short delay to ensure the keyboard dismissal is complete
-    await Future.delayed(Duration(milliseconds: 100));
-    // Clear search and return to default state
+    await Future.delayed(Duration(milliseconds: 150));
+    // Clear search field and reset everything
     setState(() {
-      _state = 0;
-      _searchController.clear();
+      _state = 0; // Default state
+      _searchController.clear(); // Clear text field
+      _searchResults = []; // Clear search results
+      if (_searchDebounce?.isActive ?? false) _searchDebounce?.cancel(); // Cancel debounce
     });
   }
 
   void _onScreenTapped() async {
     FocusScope.of(context).unfocus();
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(Duration(milliseconds: 150));
     if (_state != 2) {
       setState(() {
         _state = 0; // Reset to default state if not in detail view
       });
     }
   }
-    void _navigateToLocationDetails(Location result) {
+    Future<void> _navigateToLocationDetails(Location? result) async {
+    final location = await CloudFirestore.fetchLocation(result!.objectID);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ViewScreenSearch(location: result),
+        builder: (context) => ViewScreenSearch(location: location),
       ),
     ).then((_) {
       // Ensure we return to the Search with Filters state
@@ -306,23 +353,28 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   if (_state == 2)
                     Positioned(
-                      bottom: 20,
-                      child:
-                    Padding(
-                      padding: const EdgeInsets.only(top: 120),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            FilterButton(label: 'Restaurant', onPressed: _performSearch),
-                            FilterButton(label: 'Coffee', onPressed: _performSearch),
-                            FilterButton(label: 'Museum', onPressed: _performSearch),
-                            FilterButton(label: 'Hotel', onPressed: _performSearch)
-                          ],
+                      bottom: 10,
+                      left: 0, // Add this to ensure the scrollable area starts from the left
+                      right: 0, // Add this to ensure the scrollable area stretches across the screen
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0), // Adjust padding for spacing
+                        child: Container(
+                          height: 50, // Ensure the row has a fixed height for scrolling
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                FilterButton(label: 'Historical', onPressed: _applyFilters),
+                                FilterButton(label: 'Religious', onPressed: _applyFilters),
+                                FilterButton(label: 'Nature', onPressed: _applyFilters),
+                                FilterButton(label: 'Entertainment', onPressed: _applyFilters),
+                                FilterButton(label: 'Beach', onPressed: _applyFilters),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    )
                 ],
               ),
               Expanded(child: _buildBody()),
@@ -517,36 +569,14 @@ class _SearchPageState extends State<SearchPage> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(11.0),
-            child: Text(
-              'Popular',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 220, // Set the height to fit the card
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  buildPopularPlace("Jimbaran Beach", "assets/images/beach1.jpg"),
-                  buildPopularPlace("Muaya Beach", "assets/images/beach2.jpg"),
-                  buildPopularPlace("Nusa Dua Beach", "assets/images/beach3.jpg"),
-                  buildPopularPlace("Seminyak Beach", "assets/images/beach4.jpg"),
-                ],
-              ),
-            ),
-          ),
+
+
         ],
       );
     }
     else if (_state == 1) {
       final User? user = FirebaseAuth.instance.currentUser;
-      if (user == null) {
+      if (Auth().currentUser == null) {
         // Guest user: Use local cache
         return FutureBuilder<List<Location>>(
           future: _fetchCachedSearchHistory(), // Fetch cached search history
@@ -596,7 +626,7 @@ class _SearchPageState extends State<SearchPage> {
       } else {
         // Logged-in user: Use Firestore
         return StreamBuilder<DocumentSnapshot>(
-          stream: FirebaseFirestore.instance.collection('Users').doc(user.uid).snapshots(),
+          stream: FirebaseFirestore.instance.collection('Users').doc(user?.uid).snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator()); // Show loading indicator
@@ -678,13 +708,13 @@ class _SearchPageState extends State<SearchPage> {
           ),
           if (_isSearching)
             Center(child: CircularProgressIndicator()),
-          if (!_isSearching && _searchResults.isNotEmpty)
+          if (!_isSearching && _filteredResults.isNotEmpty)
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 4.0),
-                itemCount: _searchResults.length,
+                itemCount: _filteredResults.length,
                 itemBuilder: (context, index) {
-                  final result = _searchResults[index];
+                  final result = _filteredResults[index];
                   return GestureDetector(
                     onTap: () => {
                       saveLastViewedBusiness(result.businessId),

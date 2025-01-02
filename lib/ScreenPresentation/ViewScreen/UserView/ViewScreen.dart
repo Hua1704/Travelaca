@@ -6,10 +6,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:travelaca/Network/firebase_cloud_firesotre.dart';
 import 'package:travelaca/ScreenPresentation/ViewScreen/UserView/AddReview.dart';
-
+import 'package:geolocator/geolocator.dart';
 import '../../../Model/Reviews.dart';
+import '../../../Network/auth.dart';
 class ViewScreenSearch extends StatefulWidget {
-  final Location location;
+  final Location? location;
 
   ViewScreenSearch({required this.location});
 
@@ -30,14 +31,12 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
   Future<List<String>> fetchLastViewedBusinesses() async {
     try {
       final User? user = FirebaseAuth.instance.currentUser;
-      if (user == null) {
+      if (Auth().currentUser != null) {
         print("User not logged in.");
         return [];
       }
 
-      // Reference to the user's Firestore document
-      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user.uid);
-
+      final userDocRef = FirebaseFirestore.instance.collection('Users').doc(user?.uid);
       // Get the user's last viewed businesses
       final userDoc = await userDocRef.get();
       if (userDoc.exists) {
@@ -52,10 +51,23 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
       return [];
     }
   }
-
-
   @override
   Widget build(BuildContext context) {
+    if (widget.location == null) {
+      return Scaffold(
+        appBar: AppBar(
+
+        ),
+        body: Center(
+          child: Text(
+            "Location not found.",
+            style: TextStyle(fontSize: 18, color: Colors.grey),
+          ),
+        ),
+      );
+    }
+
+    final location = widget.location!;
     return Scaffold(
       body: Column(
         children: [
@@ -67,7 +79,7 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                 height: 180,
                 width: double.infinity,
                 child: CachedNetworkImage(
-                  imageUrl: widget.location.imageURL.isNotEmpty ? widget.location.imageURL[0] : '',
+                  imageUrl: widget.location!.imageURL.isNotEmpty ? widget.location!.imageURL[0] : '',
                   fit: BoxFit.cover,
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -79,8 +91,9 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                 left: 16,
                 child: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.pop(context);
+                    FocusScope.of(context).unfocus();
                   },
                 ),
               ),
@@ -106,37 +119,70 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                 children: [
                   // Hotel Name and Address
                   Text(
-                    widget.location.name,
+                    widget.location!.name,
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    widget.location.address,
+                    widget.location!.address,
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   const SizedBox(height: 16),
                   // Rating Section
                   Row(
                     children: [
-                      // Generate the stars dynamically
                       Row(
                         children: List.generate(5, (index) {
                           return Icon(
-                            index < widget.location.stars ? Icons.star : Icons.star_border,
-                            color: index < widget.location.stars ? Color(0xFF17727F) : Colors.grey,
+                            index < widget.location!.stars ? Icons.star : Icons.star_border,
+                            color: index < widget.location!.stars ? Color(0xFF17727F) : Colors.grey,
                             size: 20,
                           );
                         }),
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        widget.location.stars.toString()
+                      StreamBuilder<DocumentSnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection('Locations')
+                            .doc(widget.location!.businessId)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Row(
+                              children: [
+                                Text("Loading..."),
+                                SizedBox(width: 8),
+                                Text("Loading... reviews", style: TextStyle(color: Colors.grey)),
+                              ],
+                            );
+                          }
+                          if (!snapshot.hasData || !snapshot.data!.exists) {
+                            return Row(
+                              children: [
+                                Text("No data"),
+                                SizedBox(width: 8),
+                                Text("No reviews", style: TextStyle(color: Colors.grey)),
+                              ],
+                            );
+                          }
+                          final locationData = snapshot.data!.data() as Map<String, dynamic>;
 
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        '${widget.location.reviewCount} reviews',
-                        style: TextStyle(color: Colors.grey),
+                          final stars = locationData['stars'] ?? 0.0; // Get the stars field
+                          final reviewCount = locationData['review_count'] ?? 0; // Get the review_count field
+                          return Row(
+                            children: [
+                              Text(
+                                stars.toStringAsFixed(1),
+                                style: TextStyle(fontSize: 16,),
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                '$reviewCount reviews',
+                                style: TextStyle(color: Colors.grey, fontSize: 14),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -163,8 +209,8 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                   const SizedBox(height: 8),
                   Text(
                     isReadMore
-                        ? widget.location.description // Full text when expanded
-                        : '${widget.location.description.substring(0, 150)}...', // Truncated text when collapsed
+                        ? widget.location!.description // Full text when expanded
+                        : '${widget.location!.description.substring(0, 150)}...', // Truncated text when collapsed
                     style: const TextStyle(fontSize: 14),
                   ),
                   TextButton(
@@ -179,45 +225,49 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text(
-                    'Images',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF17727F)),
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.location.imageURL.length-1 , // Skip the first image
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: CachedNetworkImage(
-                              imageUrl: widget.location.imageURL[index+1], // Use remaining images
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) => CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
+                  ImageSection(imageUrls: widget.location!.imageURL,),
+                  const SizedBox(height: 16),
+                  Row(
+                  children: [
+                    StreamBuilder<DocumentSnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('Locations')
+                          .doc(widget.location!.businessId)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return Text(
+                            "Loading...",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
+                          );
+                        }
+
+                        if (!snapshot.hasData || !snapshot.data!.exists) {
+                          return Text(
+                            "No data",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          );
+                        }
+
+                        final locationData = snapshot.data!.data() as Map<String, dynamic>;
+                        final stars = locationData['stars'] ?? 0; // Get the stars field
+
+                        return Text(
+                          stars.toStringAsFixed(1),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         );
                       },
                     ),
-                  ),
 
-                  const SizedBox(height: 16),
-                  Row(
-                  children: [
-                    Text(
-                      widget.location.stars.toString(),
-                      style: TextStyle(
-                       fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      )
-                    ),
                     SizedBox(width: 16,),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -232,8 +282,8 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                         Row(
                           children: List.generate(5, (index) {
                             return Icon(
-                              index < widget.location.stars ? Icons.star : Icons.star_border,
-                              color: index < widget.location.stars ? Color(0xFF17727F) : Colors.grey,
+                              index < widget.location!.stars ? Icons.star : Icons.star_border,
+                              color: index < widget.location!.stars ? Color(0xFF17727F) : Colors.grey,
                               size: 12,
                             );
                           }),
@@ -280,16 +330,25 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                     );
                   }).toList(),
                   ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
+                      final existingReview = await FirebaseFirestore.instance
+                          .collection("Reviews")
+                          .where("business_id", isEqualTo: widget.location!.businessId)
+                          .where("user_id", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+                          .get()
+                          .then((querySnapshot) => querySnapshot.docs.isNotEmpty
+                          ? querySnapshot.docs.first.data()
+                          : null);
                       Navigator.push(context,
                         MaterialPageRoute(
                         builder: (context) => AddReviewScreen(
-                        businessID: this.widget.location.businessId,  // ID of the location being reviewed
-                        name: this.widget.location.name,
-                        address: this.widget.location.address,
-                        locationImage: this.widget.location.imageURL[0],
-                          city: this.widget.location.city,
-                          state: this.widget.location.state,
+                        businessID: this.widget.location!.businessId,  // ID of the location being reviewed
+                        name: this.widget.location!.name,
+                        address: this.widget.location!.address,
+                        locationImage: this.widget.location!.imageURL[0],
+                          city: this.widget.location!.city,
+                          state: this.widget.location!.state,
+                          existingReview: existingReview,
                         ),
                       ),);
                     },
@@ -312,12 +371,12 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                     ),
                   ),
                   Text(
-                    'Reviews (${widget.location.reviewCount})',
+                    'Reviews (${widget.location?.reviewCount})',
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color:Color(0xFF17727F)),
                   ),
                   const SizedBox(height: 8),
-                  FutureBuilder<List<Map<String, dynamic>>>(
-                    future: CloudFirestore().fetchReviews(widget.location.businessId), // Use the new fetch function
+                  StreamBuilder<List<Map<String, dynamic>>>(
+                    stream: CloudFirestore().streamReviews(widget.location!.businessId), // Use the new stream function
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(child: CircularProgressIndicator());
@@ -349,7 +408,7 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                                     children: [
                                       CircleAvatar(
                                         radius: 25,
-                                        backgroundImage: NetworkImage(review['user_avatar_url']),
+                                        backgroundImage: CachedNetworkImageProvider(review['user_avatar_url'] ?? ''),
                                       ),
                                       SizedBox(width: 10),
                                       Column(
@@ -404,7 +463,7 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                         },
                       );
                     },
-                  )
+                  ),
 
                 ],
               ),
@@ -412,6 +471,116 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ImageGalleryScreen extends StatelessWidget {
+  final List<String> imageUrls;
+  const ImageGalleryScreen({Key? key, required this.imageUrls}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous screen
+          },
+        ),
+        title: Text("Image Gallery"),
+      ),
+      body: PageView.builder(
+        itemCount: imageUrls.length,
+        itemBuilder: (context, index) {
+          return Center(
+            child: CachedNetworkImage(
+              imageUrl: imageUrls[index],
+              fit: BoxFit.contain,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ImageSection extends StatelessWidget {
+  final List<String> imageUrls;
+  const ImageSection({Key? key, required this.imageUrls}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'Images',
+              style: TextStyle(color: Color(0xFF17727F),
+              fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(width: 230),
+            Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ImageGalleryScreen(imageUrls: imageUrls),
+                ),
+              );
+            },
+            child: Text(
+              "View All",
+              style: TextStyle(color: Color(0xFF17727F),
+                fontSize: 12,
+              ),
+            ),
+          ),
+        ),]
+        ),
+        SizedBox(
+          height: 100,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: imageUrls.length-1, // Skip the first image
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImageGalleryScreen(imageUrls: imageUrls),
+                      ),
+                    );
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrls[index + 1],
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+
+      ],
     );
   }
 }

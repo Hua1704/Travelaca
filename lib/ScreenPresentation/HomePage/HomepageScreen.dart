@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:algolia_client_recommend/algolia_client_recommend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travelaca/ScreenPresentation/SearchScreen/SearchPage.dart';
@@ -7,11 +10,11 @@ import 'package:travelaca/Network/firebase_cloud_firesotre.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../Model/LocationClass.dart';
 import '../ViewScreen/UserView/ViewScreen.dart';
-class HottestTrend {
-  final String? imageLink;
-  final String? title;
-  HottestTrend({this.imageLink, this.title});
-}
+  class HottestTrend {
+    final String? imageLink;
+    final String? title;
+    HottestTrend({this.imageLink, this.title});
+  }
 class HomeScreen extends StatefulWidget {
   late final VoidCallback onSearchTapped;
   HomeScreen({required this.onSearchTapped});
@@ -21,6 +24,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>{
   late Future<List<Map<String, dynamic>>> _recommendationsFuture;
   final CloudFirestore _locationService = CloudFirestore();
+  bool isOnline = true; // Tracks online/offline state
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   void initState() {
     super.initState();
     _recommendationsFuture = CloudFirestore().fetchRecommendationsForUser();
@@ -53,10 +58,8 @@ class _HomeScreenState extends State<HomeScreen>{
         await userDocRef.set({
           'last_viewed_algolia_id': [businessId],
         });
-
       }
     } catch (e) {
-
     }
   }
 
@@ -175,13 +178,16 @@ class _HomeScreenState extends State<HomeScreen>{
                       itemBuilder: (context, index) {
                         final location = recommendations[index];
                         return placeCard(
-                          location['name'] ?? 'Unknown Place', // Name of the location
-                          location['longitude'] ?? 'Unknown Distance', // Distance from the user
+                          location['name'] ?? 'Unknown Place',
+                          location['latitude'] ?? 0.0,// Name of the location
+                          location['longitude'] ?? 0.0,
+                          // Distance from the user
                           location['image_urls'] != null && location['image_urls'].isNotEmpty
                               ? location['image_urls'][0] // Use the first image in the list
                               : 'assets/images/default_image.jpg',
                             (location['stars'] ?? 0.0).toDouble(),
                           location['id'] ?? '',
+
                           //location['stars'] ?? 0
                         );
                       },
@@ -317,104 +323,129 @@ class _HomeScreenState extends State<HomeScreen>{
     );
   }
 
-  Widget placeCard(String title, double distance, String imagePath, double stars, String id) {
-    return GestureDetector(
-      onTap: () async {
-         saveLastViewedBusiness(id);
-         final location = await CloudFirestore.fetchLocation(id);
-         if (location != null) {
-           Navigator.push(
-             context,
-             MaterialPageRoute(
-               builder: (context) => ViewScreenSearch(location: location),
-             ),
-           );
-         }
+  Widget placeCard(String title, double locationLat, double locationLng, String imagePath, double stars, String id) {
+    return FutureBuilder<Position>(
+      future: Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high),
 
-      },
-      child: Container(
-        width: 180,
-        height: 202,
-        margin: const EdgeInsets.only(left: 20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          image: DecorationImage(
-            image: imagePath.isNotEmpty
-                ? NetworkImage(imagePath)
-                : AssetImage('assets/images/default_image.jpg') as ImageProvider,
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Stack(
-          children: [
-            // Gradient overlay
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.2),
-                    Colors.transparent,
-                  ],
+      builder: (context, snapshot) {
+        String distanceText = "Calculating..."; // Default text while calculating
+
+        if (snapshot.hasData) {
+          // Calculate the distance using Geolocator
+          Position userPosition = snapshot.data!;
+
+          double distance = Geolocator.distanceBetween(
+
+            userPosition.latitude,
+            userPosition.longitude,
+            locationLat,
+            locationLng,
+          );
+          distanceText = "${(distance / 1000).toStringAsFixed(2)} km"; // Convert to kilometers
+        } else if (snapshot.hasError) {
+          // Handle errors (e.g., location not available)
+          distanceText = "Unable";
+        }
+
+        return GestureDetector(
+          onTap: () async {
+            saveLastViewedBusiness(id);
+            final location = await CloudFirestore.fetchLocation(id);
+            if (location != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ViewScreenSearch(location: location),
                 ),
+              );
+            }
+          },
+          child: Container(
+            width: 180,
+            height: 202,
+            margin: const EdgeInsets.only(left: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              image: DecorationImage(
+                image: imagePath.isNotEmpty
+                    ? NetworkImage(imagePath)
+                    : AssetImage('assets/images/default_image.jpg') as ImageProvider,
+                fit: BoxFit.cover,
               ),
             ),
-            Positioned(
-              bottom: 10,
-              left: 10,
-              right: 10,
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.8), // White transparent background
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+            child: Stack(
+              children: [
+                // Gradient overlay
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black.withOpacity(0.2),
+                        Colors.transparent,
+                      ],
                     ),
-                    Row(
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.8), // White transparent background
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.location_on,
-                          size: 12,
-                        ),
                         Text(
-                          distance.toString(),
+                          title,
                           style: TextStyle(
-                            color: Colors.black54,
-                            fontSize: 12,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 12,
+                            ),
+                            Text(
+                              distanceText, // Display the dynamic distance
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          children: List.generate(5, (index) {
+                            return Icon(
+                              index < stars ? Icons.star : Icons.star_border,
+                              color: index < stars ? Color(0xFF17727F) : Colors.grey,
+                              size: 12,
+                            );
+                          }),
                         ),
                       ],
                     ),
-                    SizedBox(height: 5),
-                    Row(
-                      children: List.generate(5, (index) {
-                        return Icon(
-                          index < stars ? Icons.star : Icons.star_border,
-                          color: index < stars ? Color(0xFF17727F) : Colors.grey,
-                          size: 12,
-                        );
-                      }),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
+
 }
 
 
