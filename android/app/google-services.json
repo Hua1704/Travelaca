@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562121305021",
+    "project_id": "travelaca-37958",
+    "storage_bucket": "travelaca-37958.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562121305021:android:b818633cddf87d0df100d4",
+        "android_client_info": {
+          "package_name": "com.example.travelaca"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs9dTTyrbGNrpOlYC-Vcb-5CED2_B2GVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
