@@ -204,25 +204,31 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                     radius: 30,
                   ),
                   SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.name,
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        widget.address,
-                        style: TextStyle(fontSize: 14, color: Colors.black),
-                      ),
-                    ],
+                  Expanded( // Ensures the text fits within available space
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.name,
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), // Adjust font size if necessary
+                          maxLines: 1, // Limit to 1 line
+                          overflow: TextOverflow.ellipsis, // Add ellipsis if overflow occurs
+                        ),
+                        SizedBox(height: 4), // Add some spacing between text lines
+                        Text(
+                          widget.address,
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                          maxLines: 2, // Limit to 2 lines
+                          overflow: TextOverflow.ellipsis, // Add ellipsis if overflow occurs
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
             // Star Rating Section
             _buildStarRatingSection(),
-
             _buildMonthOfVisitSection(),
             _buildReviewContentSection(),
             // Save Button

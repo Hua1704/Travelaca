@@ -79,7 +79,8 @@ class _OfflineHomeScreenState extends State<OfflineHomeScreen> {
             SizedBox(height: 20),
             Text(
               'No Internet Connection!',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold ,color: Color(0xFF17727F)),
             ),
             SizedBox(height: 10),
             Text(
@@ -97,14 +98,22 @@ class _OfflineHomeScreenState extends State<OfflineHomeScreen> {
                   ),
                 );
               },
-              child: Text('See Saved'),
+              child: Text('See Saved', style: TextStyle(color: Colors.white),),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(70, 50),
+                backgroundColor:  Color(0xFF17727F),
+              ),
             ),
+            SizedBox(height: 30,),
             ElevatedButton(
               onPressed: () {
-
-                setState(() {});
+                 _refresh();
               },
-              child: Text('Retry'),
+              child: Text('Retry', style: TextStyle(color: Colors.white),),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(70, 50),
+                backgroundColor:  Color(0xFF17727F),
+              ),
             ),
           ],
         ),

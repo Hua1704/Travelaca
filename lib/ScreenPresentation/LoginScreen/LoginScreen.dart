@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../Network/auth.dart';
 import '../../Network/firebase_cloud_firesotre.dart';
+import '../OfflineScreen/OfflineHome.dart';
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -128,20 +129,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                child: TextField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                    border: OutlineInputBorder(
-
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide.none,
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    suffixIcon: Icon(Icons.remove_red_eye_outlined, color:  Color(0xFF17727F)),// Fill color inside the TextField
-                  ),
-                ),
+                child: _buildTextField(controller: _passwordController,
+                    hintText: 'Password', obscureText: true
+                )
               ),
               Align(
                 alignment: Alignment.centerRight,
@@ -217,12 +207,22 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 20),
               TextButton(
-                onPressed: () {
-
-                  Navigator.push(
+                onPressed: () async {
+                  bool hasConnection = await checkConnection();
+                  if (hasConnection) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignUpScreen()));
+                  } else {
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => SignUpScreen()));
+                        builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
+                      ),
+                    );
+                  }
+
                 },
                 child: Text("Don't have an account yet? Sign up",
                   style: TextStyle(
@@ -231,15 +231,27 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MainPage(
-                        userId: "", // Pass the user ID
-                        role: "", // Pass the user role
+                onPressed: () async {
+                  bool hasConnection = await checkConnection();
+                  if (hasConnection) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainPage(
+                          userId: "", // Pass the user ID
+                          role: "", // Pass the user role
+                        ),
+                      ),);
+                  }
+                  else {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OfflineHomeScreen(), // Replace with OfflineHomepage
                       ),
-                    ),);
+                    );
+                  }
+
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
@@ -256,6 +268,39 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String hintText,
+    bool obscureText = false,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          hintText: hintText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide.none,
+          ),
+          filled: true,
+          fillColor: Colors.white,
         ),
       ),
     );
