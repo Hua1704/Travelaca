@@ -104,6 +104,7 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                   icon: Icon(Icons.favorite_border_outlined, color: Colors.white),
                   onPressed: () {
                     // Handle favorite logic
+                    saveLocationToFile(location);
                   },
                 ),
               ),
@@ -464,7 +465,6 @@ class _ViewScreenSearchState extends State<ViewScreenSearch> {
                       );
                     },
                   ),
-
                 ],
               ),
             ),
