@@ -266,7 +266,8 @@ class CloudFirestore {
             'name': hit['name'] ?? 'Unknown Place',
             'longitude': hit['longitude'] ?? 'Unknown Distance',
             'image_urls': hit['image_urls'] ?? '', // Assuming 'image' contains the URL
-            'stars': hit['stars'] ?? 0.0, // Assuming 'stars' is the rating
+            'stars': hit['stars'] ?? 0.0,
+             'address': hit['address'] ?? "Unknown"// Assuming 'stars' is the rating
           };
         }).toList());
       }

@@ -396,6 +396,7 @@ class _HomeScreenState extends State<HomeScreen>{
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
+
                           ),
                         ),
                         Row(
@@ -404,13 +405,7 @@ class _HomeScreenState extends State<HomeScreen>{
                               Icons.location_on,
                               size: 12,
                             ),
-                            Text(
-                              address, // Display the dynamic distance
-                              style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 12,
-                              ),
-                            ),
+
                           ],
                         ),
                         SizedBox(height: 5),
