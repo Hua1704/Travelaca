@@ -1,0 +1,1848 @@
+[
+    {
+        "business_id": "9be4e4c2-33c9-4ee6-be42-96ad6e6cb707",
+        "name": "Mui Ne Red Sand Dune",
+        "address": "01 Hon Rom, Mui Ne",
+        "city": "Phan Thiet",
+        "state": "Binh Thuan",
+        "latitude": 10.949271776495733,
+        "longitude": 108.29634996572288,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Attractions",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Have you ever been to a desert by the sea? If your answer is no, then you haven\u2019t been to the Mui Ne Sand Dunes!",
+        "image_urls": [
+            "https://cdn-v2.theculturetrip.com/610x407/wp-content/uploads/2018/01/sctp0188-mui-ne-vietnam-abasnejad-28.webp",
+            "https://cdn-v2.theculturetrip.com/610x407/wp-content/uploads/2018/01/sctp0188-mui-ne-vietnam-abasnejad-5.webp",
+            "https://cdn-v2.theculturetrip.com/610x407/wp-content/uploads/2018/01/sctp0188-mui-ne-vietnam-abasnejad-6.webp"
+        ]
+    },
+    {
+        "business_id": "aca9cbea-e11d-4df9-bc7f-490a1caebe91",
+        "name": "Paradise Cave",
+        "address": "Ho Chi Minh Street, Nhanh Tay, Bo Trach",
+        "city": "",
+        "state": "Quang Binh",
+        "latitude": 17.51945145757808,
+        "longitude": 106.22328411467744,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Attractions, UNESCO World Heritage Site",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Lying in the heart of Phong Nha Ke Bang, Quang Binh province, Paradise Cave is the Asia\u2019s longest cave, with magical beauty of stalactites and stalagmites. It is considered as a masterpiece of nature with myriads of thousand-year-old stalactites hidden deep in the ground.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.Zrg0DKxtZTixjjVSAnKnggHaE7?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/OIP.V-5Vv40lv5nR42lwx0L99gHaE8?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/R.b2dc0233d10b156133f990433af6a8d9?rik=41wXNai5uxIjWw&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "501f1237-56b0-48f6-9634-3f786431f42f",
+        "name": "Tam Dao",
+        "address": "",
+        "city": "",
+        "state": "Vinh Phuc",
+        "latitude": 21.453222693955116,
+        "longitude": 105.64418691791963,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Attraction, Homestay, View",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Located on the top of a mountain 70KM from Hanoi, Tam Dao is a charming little town that the city\u2019s dwellers frequently retreat to for a quick respite from their busy lives. The town\u2019s cool, pleasant atmosphere and stunning views make it the perfect place to sit back and relax.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/11/Tam-Dao-National-Park-Featured.jpg",
+            "https://thesmartlocal.com/vietnam/wp-content/uploads/2020/12/up-in-the-air-1.jpg",
+            "https://thesmartlocal.com/vietnam/wp-content/uploads/2020/12/temple-1.jpg"
+        ]
+    },
+    {
+        "business_id": "496c2441-6bdb-48a8-a7c2-f2f4bbd79cba",
+        "name": "Mui Ne Beach",
+        "address": "Xuan Thuy Street, Ham Thuan Bac, Mui Ne",
+        "city": "Phan Thiet",
+        "state": "Binh Thuan",
+        "latitude": 10.953739755839846,
+        "longitude": 108.30651532369163,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Beaches, Hotels, Resorts",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Mui Ne, Phan Thiet is famous for its long stretches of white sand, blue sea and rows of coconut trees. Visitors can come to Mui Ne year-round, each season \u201cparadise of sea\u201d brings a different beauty.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.cbbde7c57a1cf4fe861f7a3592eacbe6?rik=csVlWS5JN%2boq3A&pid=ImgRaw&r=0",
+            "https://th.bing.com/th/id/R.61fd535276700099bf82b86d151cb6bf?rik=KjPLGePhxWkS8A&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "246b5337-8d10-43f7-8530-214a92afd7e9",
+        "name": "Phong Nha \u2013 Ke Bang National Park",
+        "address": "Bo Trach, Minh Hoa",
+        "city": "",
+        "state": "Quang Binh",
+        "latitude": 17.47767898342501,
+        "longitude": 106.13406095267675,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Attractions, UNESCO World Heritage Site",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Phong Nha-Ke Bang is a national park in the center of Quang Binh province in north-central Vietnam. It protects one of the world\u2019s two largest karst regions with several hundred caves and grottoes. Its name derives from Phong Nha cave, the most beautiful one, with numerous fascinating rock formations, and Ke Bang forest. The plateau is probably one of the finest and most distinctive examples of a complex karst landform in Southeast Asia.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.Ayq_70vpGYKkX-fLV3jCJAHaEd?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/OIP.n0uPDDZtybxMXaRaE-_cbAHaEV?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/R.5924bc68b13af99bc0036cbb5483be58?rik=Da90OVhStNe63Q&riu=http%3a%2f%2f4.bp.blogspot.com%2f-WdclBk47sec%2fVUXMgsLaDDI%2fAAAAAAAAB3o%2fwak4Xpzf5aY%2fs1600%2fquang-binh-phong-nha-cave-4.jpg&ehk=0n1FU4%2fdJFM3dWlbclyldLb%2fT8VTaA%2b7yo47zm4UYVE%3d&risl=&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "3ad90de0-781b-4ac8-9b28-2b6da7719d85",
+        "name": "Ha Long Bay",
+        "address": "",
+        "city": "Ha Long",
+        "state": "Quang Ninh",
+        "latitude": 20.816188246096747,
+        "longitude": 107.17951121909181,
+        "stars": 3.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Attractions, UNESCO World Heritage Site",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Ha Long Bay is a UNESCO World Heritage Site and popular travel destination in Quang Ninh province, Vietnam. The name Ha Long means 'descending dragon'. The bay features thousands of limestone karsts and islets in various shapes and sizes. Ha Long Bay is a center of a larger zone that includes Bai Tu Long Bay to the northeast, and Cat Ba Island to the southwest. These larger zones share a similar geological, geographical, geomorphological, climate, and cultural characters.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.kpk_b_aUt5CnPDqSHjX5xwHaEu?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/OIP.etAuU6s37LKvMdBPZwkqKwHaFi?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "2fd62c0c-1f0e-4a2e-82f0-0af25b8e5da6",
+        "name": "Cai Rang Floating Market",
+        "address": "Can Tho River",
+        "city": "Can Tho",
+        "state": "Can Tho",
+        "latitude": 10.005184219443263,
+        "longitude": 105.74593868491337,
+        "stars": 4.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Market, Attraction, Cuisine",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Cai Rang Floating Market is the most famous and biggest floating market in the Mekong Delta. The market is unique culture of local people living along this mighty river. Instead of shopping in the town, they shop and barter on the river that is more convenient to access by waterways.",
+        "image_urls": [
+            "https://media.christinas.vn/uploads/2017/03/Cai-Rang-Floating-Market-3.jpg",
+            "https://th.bing.com/th/id/R.60d5d18fd7e1dd8b6d2100be031e652b?rik=gRI5q%2be7St2glA&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "d7dcc6e0-6cda-4b5e-8b25-a41ec8af2f6e",
+        "name": "Vinpearl Safari Phu Quoc",
+        "address": "Bai Dai, Ganh Dau",
+        "city": "Phu Quoc",
+        "state": "Kien Giang",
+        "latitude": 10.33703609794913,
+        "longitude": 103.8914500697265,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Zoo, Entertainment, Amusement Parks",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The first semi-wild animal conservation park in Vietnam, where visitors can discover wildlife in the most vivid way.",
+        "image_urls": [
+            "https://pqr.vn/wp-content/uploads/2020/04/vinpearl_safari_phu_quoc_gonatour.jpg",
+            "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_861,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/zczqsyqcdivsuqede4qc/VinpearlSafariPhuQuocTicket.jpg",
+            "https://th.bing.com/th/id/OIP.oGs7SEI8n3-dyTeBi61FxQHaE7?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "98743482-ea8b-472f-af55-649564388805",
+        "name": "Monkey Island",
+        "address": "Hon Lao island, Ninh Hoa",
+        "city": "Nha Trang",
+        "state": "Khanh Hoa",
+        "latitude": 12.35980203561131,
+        "longitude": 109.21284625315991,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment, Nature",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Still have some more spare time in your trip to Nha Trang, Vietnam? Then, it could be a good opportunity for you to visit Hon Lao Island, also known as Monkey Island to experience a fun, adventurous and energetic island trip, ideal for both adults and kids!",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/10/monkey-sanctuary.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/10/circus-show-1.webp"
+        ]
+    },
+    {
+        "business_id": "36e49175-4459-440e-a498-f17d8ebc7a5f",
+        "name": "VinWonders Nha Trang",
+        "address": "Hon Tre",
+        "city": "Nha Trang",
+        "state": "Khanh Hoa",
+        "latitude": 12.218749374420259,
+        "longitude": 109.24050678258757,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment, Attractions, Amusement Parks",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Nestled in Nha Trang, VinWonders South Nha Trang invites visitors to explore a world of entertainment through its diverse attractions. Featuring thrilling games and immersive shows, it is a must-visit destination for all ages",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.3a1js3zHiFwKmAfp1zXw8wHaEz?rs=1&pid=ImgDetMain",
+            "https://lh3.googleusercontent.com/mE9rUFJQhTPoBV5syQsCxeDodh_Y0Dcdwk-KVxTErrbFEhoBKQmg2rKYK0BOz9naieys4m_jcaO9kq6mMH0-CXUtkZv9Ca5abhstl_rKDQt2MtrgEvGjxqnQQTsw3hRzB1Rfdjsd"
+        ]
+    },
+    {
+        "business_id": "47612bd1-17c0-4e53-8a0a-f013fd39914f",
+        "name": "VinWonders South Hoi An",
+        "address": "Vo Chi Cong Street, Binh Minh, Thang Binh",
+        "city": "Quang Nam",
+        "state": "Quang Nam",
+        "latitude": 15.785984960660292,
+        "longitude": 108.40765312379533,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment, Attractions, Amusement Parks",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Nestled in Hoi An, VinWonders South Hoi An invites visitors to explore a world of entertainment through its diverse attractions. Featuring thrilling games and immersive shows, it is a must-visit destination for all ages",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.8c068edf39a6675b9d855b9e55225e87?rik=UysvqOJMGfKI9Q&pid=ImgRaw&r=0",
+            "https://static.vinwonders.com/2022/05/Hinh-anh-VinWonders-Nam-Hoi-An-River-Safari-3x2-so-1.jpg"
+        ]
+    },
+    {
+        "business_id": "2041749d-44d9-4d0f-8a4b-92a3c05e4a79",
+        "name": "Lang Co Beach",
+        "address": "Phu Loc",
+        "city": "Thua Thien Hue",
+        "state": "Thua Thien Hue",
+        "latitude": 16.264198644872057,
+        "longitude": 108.06590125948372,
+        "stars": 4.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Beaches, Resorts, Hotels",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Lang Co Beach is known for having one of the most beautiful natural coastal landscapes in Vietnam. It is situated more than 25 km north of Da Nang city, and more than 60 km south from Hue. This makes Lang Co Beach the perfect stop if you are travelling between these two cities, just at the foot of the famous Hai Van pass.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.azm4KsS0l6Ch6NKQd-AZoQHaEH?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "02c2a44f-f5f8-494f-bc85-9f314a200d64",
+        "name": "Thien Mu Pagoda",
+        "address": "Huong Hoa",
+        "city": "Hue",
+        "state": "Thua Thien Hue",
+        "latitude": 16.45310818428341,
+        "longitude": 107.54490689497621,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Religious",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "There\u2019s a religious site in Hue, Vietnam that lures tourists by its beautiful and ancient architectural structures of worship, Thien Mu pagoda in the ancient Hue city.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.fcNk_jz3Aa2IgAEZYP7S5QHaE8?pcl=1b1a19&rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/R.c0aa16b0957eac962cf34505b0d0416f?rik=sQBsJrzLnORQrA&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "d30cafaa-e846-4df6-bd0f-47b1d50d77da",
+        "name": "Imperial City of Hue",
+        "address": "Phu Hau",
+        "city": "Hue",
+        "state": "Thua Thien Hue",
+        "latitude": 16.469518088132123,
+        "longitude": 107.57743329125142,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Cultural, UNESCO World Heritage Site",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The Imperial City of Hue was the capital of Vietnam from 1802 to 1945 and of vital importance to the last Vietnamese royal house of the Nguyen Dynasty. As the country\u2019s political, cultural and religious centre for this period, Hue boasts an array of architectural treasures and UNESCO has described it as an \u201coutstanding example of an eastern feudal capital\u201d.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.pTLnJfdvJVNMLSFIQBzpvwHaEK?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/OIP.Ek6TXIUmyfXaHhMW4IzUmAAAAA?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "36e92d7f-c9ff-46ee-9f3b-8e1846ee47ad",
+        "name": "War Remnants Museum",
+        "address": "28 Vo Van Tan, Vo Thi Sau, District 3",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.779489510334852,
+        "longitude": 106.69209159485222,
+        "stars": 4.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Museum, Historial",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The War Remnants Museum, formerly known as the Vietnam War Museum, is a must-see attraction for visitors to Ho Chi Minh City. Located in the heart of the city, this museum offers a powerful and emotional look into the Vietnam War. It features exhibits and displays of weapons, photographs, and other artifacts that provide a vivid insight into the effects of the war on the Vietnamese people and the country as a whole. The War Remnants Museum is an important part of Vietnam\u2019s history and an essential stop for anyone interested in learning more about this period of conflict.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.vutVe3ZmUm4c5CZPWougXAHaEK?rs=1&pid=ImgDetMain",
+            "https://vietdreamtravel.vn/wp-content/uploads/2020/02/War-Remnants-Museum-2-768x427.jpg",
+            "https://th.bing.com/th/id/R.fab640ae9e9f166eec23a97a81f9890f?rik=PZ14f3uj9HEOFw&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "6c420baf-0268-4a37-8a32-721dccb28eec",
+        "name": "Landmark 81",
+        "address": "720A \u0110ien Bien Phu, Vinhomes Tan Cang, Binh Thanh",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.795225936691283,
+        "longitude": 106.72179339588364,
+        "stars": 3.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Landmark, Architecture, Attraction, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Vincom Landmark 81 is a supertall skyscraper in Ho Chi Minh City, Vietnam. It is currently the 2nd tallest building in Southeast Asia. The skyscraper is a popular attraction in Ho Chi Minh City, it has an observation deck on the top, visitors can get on and enjoy the view of the city from the sky.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.e9f25a3b4594fefc3c55c10a412183a9?rik=DxSowEKqE0F7xw&pid=ImgRaw&r=0",
+            "https://ardorarch.com/wp-content/uploads/2020/09/Vincom-landmark-81-vinhomes-central-park.jpg"
+        ]
+    },
+    {
+        "business_id": "95cb95e9-bfea-4ce4-bc6a-e237a3d04240",
+        "name": "Dam Sen Water Park",
+        "address": "3 Hoa Binh, Ward 3, District 11",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.76893472186981,
+        "longitude": 106.63598285453494,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Most families visiting Ho Chi Minh City much enjoy interesting games in Dam Sen Park, the ideal place of interest for small children. Opened in 1999, it now covers more than 50 ha on the corner of Lac Long Quan and Hoa Binh Street, and comprises various areas. Annually, it has several new water slides added. This place is an water park.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.3ZHfBVNFBfMPMoF9xVV8KQHaEL?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "e145e986-4c73-44d4-8c25-1431e265cb22",
+        "name": "Dam Sen Cultural Park",
+        "address": "3 Hoa Binh, Ward 3, District 11",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.766091819716564,
+        "longitude": 106.64189249927269,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Most families visiting Ho Chi Minh City much enjoy interesting games in Dam Sen Park, the ideal place of interest for small children. Opened in 1999, it now covers more than 50 ha on the corner of Lac Long Quan and Hoa Binh Street, and comprises various areas. Annually, it has several new water slides added. This place is an amusement park.",
+        "image_urls": [
+            "https://vietdreamtravel.vn/wp-content/uploads/2021/09/dam-sen-park-1-900x500.jpg"
+        ]
+    },
+    {
+        "business_id": "d961a88b-7508-4957-9969-6999b82bbef1",
+        "name": "Dragon House Wharf",
+        "address": "1 Nguyen Tat Thanh, Ward 13, District 4",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.768156409421445,
+        "longitude": 106.70686613931203,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Dragon House Wharf - Nha Rong Harbor which is known as the largest harbor in Saigon, one of the most highlight attractions in Ho Chi Minh City, attracts millions of Vietnamese as well as foreign tourists each year by the unique architecture blending with the perfect combination between French style and Vietnamese culture. It is also famous for witnessing one of the most critical historical events of Vietnam. This is the site where President Ho Chi Minh \u2013 the most talented leader in Vietnam, embarked aboard to seek a path to national salvation in 1911. Nha Rong Harbor is an imperative tourist destination on the trip to discover on Ho Chi Minh City tours.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP._wiY_ap1_TCj2Z2CjNKzowHaE8?rs=1&pid=ImgDetMain",
+            "https://localvietnam.com/wp-content/uploads/2023/06/dragon-wharf-2.jpg"
+        ]
+    },
+    {
+        "business_id": "c81b2b25-46a4-4655-a0f5-f9bdf0b18a8a",
+        "name": "Saigon Central Post Office",
+        "address": "2 Cong xa Paris, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.779908019903806,
+        "longitude": 106.69990036030187,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Architecture, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Saigon Central Post Office is one of the most famous and iconic attractions in Ho Chi Minh City. With its unique structure and remnant of the city\u2019s past, this is a perfect place for the people who want to enjoy the beautiful design, mail a postcard, write a letter by hand or simply recall the memory of a bygone era.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.-0a1muNNVUL2Ox4a6vUdYgHaDt?rs=1&pid=ImgDetMain",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/Saigon-Central-Post-office-from-outside-citypassguide.com_.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/Architecture-of-Saigon-Central-Post-Office.webp"
+        ]
+    },
+    {
+        "business_id": "b4b640b1-3917-45ba-9b57-e4e7d7f10162",
+        "name": "Vinh Nghiem Pagoda",
+        "address": "339 Nam Ky Khoi Nghia, Ward 14, District 3",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.790741928482477,
+        "longitude": 106.6826193948524,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Architecture, Religious",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Going to the pagoda and paying homage to the Buddha is one of the typical cultural features of Vietnamese people from ancient times to present. Together with Ngoc Hoang Pagoda (or Phuoc Hai Pagoda), Xa Loi Pagoda, Giac Lam Pagoda, Vinh Nghiem Pagoda is among the famous and most important sites to Buddhism in Ho Chi Minh City. Located at Nam Ky Khoi Nghia Street in District 3, Vinh Nghiem Pagoda with its large campus and special architecture attracts thousands of visitors. When entering, the atmosphere at the pagoda brings pure and peaceful feelings in any visitor\u2019s hearts.",
+        "image_urls": [
+            "https://vietnamtravel.com/images/2020/10/Tam-Quan-Gate-vinh-nghiem-pagoda.jpg",
+            "https://vietnamtravel.com/images/2020/10/Vinh-Nghiem-Pagoda-1-1.jpg"
+        ]
+    },
+    {
+        "business_id": "1d144ecf-bbbd-46c2-85f5-22c9f3cab4fc",
+        "name": "Crescent Lake Park",
+        "address": "Phu My Hung Urban area, District 7",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.72560563782749,
+        "longitude": 106.71700445066939,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Not only is Ho Chi Minh City well-known as a dynamic and bustling city, but sometimes this city also has romantic and tranquil moments, especially when the night falls. One destination that you should not miss in Ho Chi Minh City is Crescent Lake Park, a unique park near Phu My Hung New Urban Area, one of the most modern residential areas in Ho Chi Minh City.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2022/03/overview-crescent-lake-park.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2022/03/Highlights-crescent-lake-park-mai-huynh-dai-duong.webp"
+        ]
+    },
+    {
+        "business_id": "97a25374-6ab3-4801-9230-a9b22c03cd09",
+        "name": "Bui Vien Walking Street",
+        "address": "Bui Vien Street, Pham Ngu Lao, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.767402009500048,
+        "longitude": 106.69397976601564,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Bui Vien Walking Street, a nightlife tourist attraction in Saigon, is an ideal venue for Western guests and young Saigonese to come to eat and hang out every time they go down the street. Bui Vien street is so-called \u201cWestern Street\u201d (Pho Tay) referring to its Western culture-orientated features. Before becoming a walking city, Bui Vien street was crowded with backpackers coming here to have fun, try unfamiliar cuisines and explore a new place during their trip to Saigon.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2021/02/Bui-Vien-street-in-daytime-thecitylane.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2021/02/Is-Bui-Vien-street-safe.webp"
+        ]
+    },
+    {
+        "business_id": "cf50e946-5a37-40a0-a9b2-8a4b23a76c67",
+        "name": "Saigon Opera House",
+        "address": "7 Cong truong Lam Son, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.776590871086265,
+        "longitude": 106.70302870442684,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Cultural, Architecture",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Located in the center of the busy city of Ho Chi Minh City, the Saigon Opera House, officially called the Municipal Theatre of Ho Chi Minh City, is a remarkable architectural structure and a symbol of Vietnamese culture. Constructed more than a century ago, this venerable location features an intricate mosaic of creativity and architecture, enthralling guests with its distinct fusion of architectural forms.\nTravelers and art fans alike may enjoy an unmatched cultural experience at the Saigon Opera House, which hosts everything from traditional Vietnamese performances to classical music. Anyone looking to fully immerse oneself in the rich cultural legacy of Vietnam\u2019s main city should be sure to visit this place",
+        "image_urls": [
+            "https://govntravel.b-cdn.net/wp-content/uploads/2024/05/image-16.jpeg",
+            "https://govntravel.b-cdn.net/wp-content/uploads/2024/05/image-15.jpeg",
+            "https://govntravel.b-cdn.net/wp-content/uploads/2024/05/image-13.jpeg"
+        ]
+    },
+    {
+        "business_id": "b3d96b4a-76f3-4590-89f2-280e07da52a1",
+        "name": "Nguyen Hue Walking Street",
+        "address": "Nguye\u0303n Hue\u0323, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.774565155697363,
+        "longitude": 106.70325542896578,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Nguyen Hue Walking Street in Ho Chi Minh City is a bustling pedestrian promenade that attracts a large number of locals and visitors, especially in the evenings. The street offers a captivating blend of old-world charm with its historic buildings and the striking contrast of modern skyscrapers that line its sides. It is a vibrant hub where people gather to enjoy leisurely strolls, savor delicious street food, witness captivating street performances, and soak in the vibrant ambiance of this iconic urban space.",
+        "image_urls": [
+            "https://localvietnam.com/wp-content/uploads/2023/06/nguyen-hue-walking-street-2.jpg",
+            "https://localvietnam.com/wp-content/uploads/2023/06/nguyen-hue-walking-street-1.jpg",
+            "https://localvietnam.com/wp-content/uploads/2023/06/cafe-apartment-building.jpg",
+            "https://localvietnam.com/wp-content/uploads/2023/06/ho-chi-minh-statue.jpg",
+            "https://localvietnam.com/wp-content/uploads/2023/06/nguyen-hue-tet-flowers.jpg"
+        ]
+    },
+    {
+        "business_id": "09eaadf4-349a-48c7-b417-c4eedb9a3018",
+        "name": "Saigon Zoo & Botanical Garden",
+        "address": "2 Nguyen Binh Khiem, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.787575007066716,
+        "longitude": 106.705279866016,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Entertainment, Zoo, Botanical Gardens",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Saigon Zoo and Botanical Garden, established in 1865, spans over 20 hectares and is home to more than 1,300 animals and thousands of plant species. The zoo is divided into various sections, including animal exhibits, botanical gardens, a children\u2019s amusement area, and historical monuments. It\u2019s a wonderful place for families, nature enthusiasts, and anyone looking to escape the city\u2019s hustle and bustle.",
+        "image_urls": [
+            "https://static.vinwonders.com/2023/02/FGy6JcDX-saigon-zoo-and-botanical-gardens-thumb.jpg",
+            "https://th.bing.com/th/id/OIP.lUp5bujdibFCG_SWinXhdwHaDS?rs=1&pid=ImgDetMain",
+            "https://static.vinwonders.com/2023/02/saigon-zoo-and-botanical-gardens-04.jpg",
+            "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/62000/62522-Saigon-Zoo-And-Botanic-Garden.jpg"
+        ]
+    },
+    {
+        "business_id": "e813d0a9-10a0-46bd-8b55-0fd2311f8bc2",
+        "name": "Suoi Tien Theme Park",
+        "address": "120 Song Hanh Xa Lo Ha Noi, Phuong Tan Phu, Thu \u0110uc",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.866281117496788,
+        "longitude": 106.80314633718095,
+        "stars": 3.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Suoi Tien Theme Park has been dubbed 'Vietnam's Disneyland' in Ho Chi Minh City (Saigon). The amusement park has the traditional rides, restaurants, and experience zones, but with a Buddhist twist. Dragons, Buddha, and Vietnamese gods adorn the walls. While a waterslide emerges from the beards of Buddhist gurus, One House of Horror leads you through the numerous levels of Buddhist Hell.",
+        "image_urls": [
+            "https://img.atlasobscura.com/lky43jzdVnUT91CnFgmn6JAwgaCcamT8aTAfGy0DLCg/rs:fill:780:520:1/g:ce/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy9jZjMy/ZDEyMC1hM2QwLTQy/N2QtYWZmMi02ODFi/Njc2YWU0ODA3OWYy/ZWRjZTcxMGE3MzFl/OTZfVmlldG5hbSBz/bmFwcGllcy5KUEc.jpg",
+            "https://th.bing.com/th/id/OIP.Rx5lE9ePwQ6op_rY0JiGSQHaE7?rs=1&pid=ImgDetMain",
+            "https://thumbs.dreamstime.com/b/suoi-tien-amusement-park-jan-ho-chi-minh-city-vietnam-saigon-67171874.jpg"
+        ]
+    },
+    {
+        "business_id": "e85d2c4f-7527-4bc6-85fb-05def3a0a922",
+        "name": "April 30th Park",
+        "address": "6 Le Duan, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.779238363713914,
+        "longitude": 106.69737542368868,
+        "stars": 4.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Do you yearn for a peaceful place to let your hair down because of tiredness in life? However, you also want to go somewhere around you for cost-saving. If you live in Ho Chi Minh City, it will offer a wide range of parks from which a myriad of people choose for relaxation. Each of them is a wonderful stop for the adults and children to have entertainment after hard-working days, especially 30/4 Park. This one has had a reputation for its calmness and cleanness with a large campus and a lot of green trees.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.RZ_TW01pMBHRpFpsTzXjtgHaFj?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "2ed3c6e7-d977-4057-a4bc-013041079222",
+        "name": "Independence Palace",
+        "address": "135 Nam Ky Khoi Nghia Street, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.777119479933626,
+        "longitude": 106.69530790297733,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Architecture",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The Reunification Palace, also known as Independence Palace, is listed as a historical monument by witnessing great changes of Ho Chi Minh City\u2019s history (formerly known Saigon) and having in itself the essence of Eastern culture. Throughout the heroic battles, this amazing work of architecture had witnessed almost every high and low of the Vietnamese war.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.7bdd7e5a8f78ba7070c6c0fbe69295d4?rik=uXgvfultuszNTw&pid=ImgRaw&r=0",
+            "https://th.bing.com/th/id/OIP.bwx3KZ3YxR3gb1MOXChacQHaE_?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "261a8dfe-be6e-4476-836b-65b8da7dc2e1",
+        "name": "Museum of Ho Chi Minh City",
+        "address": "65 Ly Tu Trong, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.777045024268572,
+        "longitude": 106.69949088525921,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Museum, Historical",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Locating the center of Ho Chi Minh City, Vietnam History Museum portrays Vietnam\u2019s history from ancient times (approximately 300,000 years ago) up to the 1930s, when Vietnam\u2019s Communist Party was founded. Through the different exhibits, visitors will have an opportunity to experience the nostalgic and ancient feeling of the proud, longlive history of Vietnamese.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OLC.c9N6IMs3Cnpkyw480x360?&rs=1&pid=ImgDetMain",
+            "https://lp-cms-production.imgix.net/2019-06/4921da06f6e18cccc6d411c404553c29-lpl-00336.jpg?sharp=10&vib=20&w=1200"
+        ]
+    },
+    {
+        "business_id": "a62edb33-b1e2-43f6-8e39-7b1ac66e58a8",
+        "name": "Saigon Notre Dame Cathedral",
+        "address": "1 Cong xa Paris, Ben Nghe, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.779975200440802,
+        "longitude": 106.6990296236886,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Architecture, Religious",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Situated at the center of Ho Chi Minh City, Saigon Notre Dame Cathedral, aka Saigon Notre Dame Cathedral Basilica or Cathedral Basilica of Our Lady of The Immaculate Conception, is a symbol and one of the most famous Saigon attractions in the financial hub of Vietnam. As one of the most famous attractions in Ho Chi Minh City, this long-age cathedral attracts not only Catholics believers but also tourists and the locals of other religions because of its sacred atmosphere and magnificent structure beauty.",
+        "image_urls": [
+            "https://www.indochinatour.com/assets/images/Vietnam/saigon-notre-dame-cathedral-tour.jpg",
+            "https://th.bing.com/th/id/R.7d1f92ad2073567b4f1f2926b30521c4?rik=SXydhmCbgIUylA&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "14221a73-9281-4d02-915f-1587ce5814df",
+        "name": "Tao Dan Park",
+        "address": "Truong Dinh Street, Ben Thanh, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.774685445012505,
+        "longitude": 106.69248501019757,
+        "stars": 3.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "If you are a curious visitors who are planning on a remarkable vacation in Ho Chi Minh City, you will surely have to look through all of the most attractive tourist destinations, to fit them in your schedule. Among them, Tao Dan Park might be an ideal place to visit if you are interested in exploring nature or having a picnic with your loved ones. Do check out some information about this amazing place and you will be interested.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.d5434c0129cc6873f2cf5e48960296ea?rik=oS6x169S7aIVZw&pid=ImgRaw&r=0",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/Sculptures-at-Tao-Dan-Park-@thegreatescapejournal.webp"
+        ]
+    },
+    {
+        "business_id": "2feeb9a4-b645-46b3-9131-bbd3caa279bc",
+        "name": "Ben Thanh Market",
+        "address": "Ben Thanh, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.77261164721715,
+        "longitude": 106.6979993371794,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Markets, Shopping",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "For those who have spent years shopping at some supermarkets and commercial centers, it would be an exhilarating experience to explore the Asian markets. Just visit Ben Thanh Market, you will understand why. It is truly a must-see attraction in the dynamic Saigon city as a bustling market in the daytime and a social center in the evening.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.41b64dd703f7a840f1ec181a6d8a2b47?rik=PMsFFt6WrO2XbQ&pid=ImgRaw&r=0",
+            "https://th.bing.com/th/id/OIP.qpxuFUmz6-G4ZgGLQxNM9QHaDt?rs=1&pid=ImgDetMain",
+            "https://static.christinas.vn/2017/1/8/Ben%20Thanh%20Market%20(13).jpg"
+        ]
+    },
+    {
+        "business_id": "07e9fa69-8ec2-40d6-875a-a25c42488afc",
+        "name": "Dragon Bridge",
+        "address": " Nguyen Van Linh Street, Phuc Ninh Ward, Hai Chau District",
+        "city": "Da Nang",
+        "state": "Da Nang",
+        "latitude": 16.062272,
+        "longitude": 108.224541,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Attractions",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Dragon Bridge is the newest bridge among six bridges crossing over the Han River in Danang, Vietnam. As its name implies, Dragon Bridge illustrates the image of a dragon flying towards the sea with the architecture inspired by Ly dynasty. This inventive design is a reflection of Vietnamese customs and beliefs, as well as highlights Da Nang\u2019s growth and development. Due to its unique design, the bridge has become an iconic image of the city that visitor should not miss while in Danang.",
+        "image_urls": [
+            "https://vietnamtravel.com/images/2020/08/Danang-Dragon-Bridge-16-1.jpg",
+            "https://th.bing.com/th/id/OIP.K1-C-e1XSXZW2NvfqCASRgHaE3?w=838&h=551&rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "14711684-cc93-4da1-a77c-7d9657298b9d",
+        "name": "Linh Ung Temple",
+        "address": "Hon Thuy Son, Hoa Hai, Ngu Hanh Son",
+        "city": "Da Nang",
+        "state": "Da Nang",
+        "latitude": 16.004680739955365,
+        "longitude": 108.26440176083378,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Religious",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Going to the beach and enjoying the bright sunshine, the lovely sandbank as well as the extremely clean and refreshing sea water has always been a must when you visit Da Nang city. However, if you plan to stay here for a bit long and have got bored of the beach, then you may want to visit other parts of the city. If you are a person of religion, or simply someone who\u2019s looking for a quiet and tranquil place, then Linh Ung Pagoda (Bai But) might be the perfect place waiting for you.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/09/Lady-Buddha-Statue.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/09/View-from-Linh-Ung-Pagoda.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/09/The-Main-Hall.webp"
+        ]
+    },
+    {
+        "business_id": "7645e882-9ea9-4070-9df3-f21137344cbc",
+        "name": "My Son Sanctuary",
+        "address": "Duy Phu, Duy Xuyen District",
+        "city": "Quang Nam",
+        "state": "Quang Nam",
+        "latitude": 15.7739826947277,
+        "longitude": 108.10902163887694,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Cultural, Historical, UNESCO World Heritage Sites",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The My Son Sanctuary is one of eight UNESCO World Heritage Sites in Vietnam. Its ruins date back to the 4th through 13th centuries. This is an excellent half-day trip from Da Nang or Hoi An.\nDuring the Vietnam War, the Viet Cong hid amongst and used the ruins as a base of operations. As such, the area saw many conflicts and was the target of bombs. Restorations and improvements are underway.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.dabd7f05c362ceec3bf0f84139377cc7?rik=WeUDQD7TmlJVfQ&pid=ImgRaw&r=0",
+            "https://th.bing.com/th/id/R.47d44acb054fd8ecb105bbc3d3364a99?rik=b%2bdq4jSQGFDzkA&pid=ImgRaw&r=0",
+            "https://centralvietnamguide.com/wp-content/uploads/2022/02/my-son-sanctuary-2-1024x683.jpg"
+        ]
+    },
+    {
+        "business_id": "5f1d196c-c916-446a-ae2e-448ab5fe6ada",
+        "name": "Ngu Hanh Son Marble Mountain",
+        "address": "Hoa Hai, Ngu Hanh Son",
+        "city": "Da Nang",
+        "state": "Da Nang",
+        "latitude": 16.003633052088222,
+        "longitude": 108.26456212197037,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The Marble Mountains are five mountains made of limestone and marble, about 9 kilometers (5 miles) south of Da Nang city proper. The five mountains are named after the five elements: metal, water, wood, fire and earth. The cluster of hills is a well-known pilgrimage site with beautiful peaks, vast networks of tunnels, gorgeous caves, and impressive temples making for a wonderful place to explore.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.NinP3qNdUkcEreb-OuZhMAHaFj?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/OIP.MZCBibiLISl5m3h71C1l1QHaE7?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/OIP.WLuZVIk_RJ8KitcqMAdOGwHaFV?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "c1040975-164b-4fae-98a2-1bb97930b8b5",
+        "name": "Son Tra Peninsula",
+        "address": "Son Tra District",
+        "city": "Da Nang",
+        "state": "Da Nang",
+        "latitude": 16.130576,
+        "longitude": 108.283971,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Beaches, Nature, Attraction",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "With its sea-oriented appearance, Son Tra acts as a giant screen protecting Da Nang from storms and cyclones coming from the sea. Son Tra is put under the national protected forest regulation since it is a natural preservation area. The Peninsula is famous for its plentiful plants and fauna as well as the attractive scenery. It is said that fairies used to come here for singing, dancing and playing chess so Son Tra is also called Tien Sa (Fairies\u2019 landing place).\nOn Son Tra, there still remain more than 30km\u00b2 of natural forests, nearly 300 types of plants and several hundred kinds of fauna, including rare animal. From the top of the mountain, you can see the overall view of Danang City, Marble Mountains, Ba Na \u2013 Mount Chua, so interesting!\nThere is also Suoi Da (Stone Stream), which lies by the side of the foot of the mountain, fine sandy surfaces run round the peninsula, several breaks of waves are running steadily up and down and washing up on the stones heaped up around the seaside.\nAll are attractive spots for tourists. It is so majestic, so romantic, so wide and really beautiful.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP._XXipl6cr4pehzbEZxHyUgHaEo?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/R.cf14be7830f68b9001abc5078ae48c5f?rik=SkQ0lgWSG3tCtA&pid=ImgRaw&r=0",
+            "https://th.bing.com/th/id/R.24c89cb23d7b5f702476450e3f068157?rik=iMbOzf%2f8Rnu5Kg&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "5566b3cd-4c76-4e1e-98de-1443da09288c",
+        "name": "Vinpearl Aquarium Times City",
+        "address": "458 Minh Khai, Thanh Luong, Hai Ba Trung",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 20.9964611783165,
+        "longitude": 105.86813334114798,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The newest and largest aquarium in Vietnam. Well worth a visit. Displays include penguins and hundreds of other marine creatures. Shows daily including animal feeding and their own \u2018mermaid\u2019 show.",
+        "image_urls": [
+            "https://bantimescity.vn/wp-content/uploads/2017/06/Vinpearl-Aquarium-Times-City.jpg",
+            "https://vevinwonders.com/wp-content/uploads/2022/11/ve-vinwonders-time-city-13.jpg"
+        ]
+    },
+    {
+        "business_id": "642c0f8a-522d-471a-85dd-9d4dcff073b5",
+        "name": "Imperial Citadel of Thang Long",
+        "address": "19C Hoang Dieu, \u0110ien Bien, Ba \u0110inh",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.03574282445983,
+        "longitude": 105.84038768986751,
+        "stars": 4.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Cultural, Architecture",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "As one of oldest cities in the world, Hanoi certainly has its own way to stand out from fellow Southeast Asian cities. Its rich culture is reflected on one of the most ancient historical sites: the Imperial Citadel of Thang Long.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/History-of-Imperial-citadel-of-Thang-Long.jpg",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/Bac-Mon-North-gate-of-Imperial-Citadel-of-Thang-Long-2048x1536.jpg"
+        ]
+    },
+    {
+        "business_id": "2f1e9dec-719d-4b7c-8fa7-d3a9efae3a82",
+        "name": "Hanoi Opera House",
+        "address": "1 Trang Tien, Phan Chu Trinh, Hoan Kiem",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.02436395582261,
+        "longitude": 105.85760393742741,
+        "stars": 4.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Cultural, Architecture",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Wandering around Hanoi, you may discover a number of yellow-painted buildings, which are of typical French architecture. Hanoi Opera House is one of the most appealing ones. Looked from outside, it is possibly unable to reach your expectation, however, there is more to this yellow construction than meets the eye.\nAt the moment, The Hanoi Opera House is the biggest theatre in Vietnam, which is also considered as a historical and architectural landmark as well as attraction in Hanoi where a range of important events have taken place.",
+        "image_urls": [
+            "https://huyhoa.net/files/vietnam/hanoi-opera-house/Hanoi-Opera-House-4.jpg"
+        ]
+    },
+    {
+        "business_id": "d8aa5df8-2524-451e-8fba-5a27a7d2cbb7",
+        "name": "Ho Chi Minh Mausoleum",
+        "address": "1 Hung Vuong, \u0110ien Bien, Ba \u0110inh",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.037575278741375,
+        "longitude": 105.83467696337553,
+        "stars": 4.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Cultural",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Ho Chi Minh\u2018s Mausoleum has long been considered as the first place to come for the first time travelers to Hanoi thanks to its tremendous historical value. Everyone wants to make a pilgrimage there to show their respect for Ho Chi Minh (Uncle Ho \u2013 President Ho), the Greatest President, who led Vietnam to Independence. Being there, visitors can not only discover more about Ho Chi Minh\u2019s life and role in Vietnamese history but also enlarge their knowledge about Vietnam\u2019s history reflected in the complex\u2019s components.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.d296173b23f8f13bce1a7077afd86dcd?rik=Ac8YQhOMqkpG%2bQ&pid=ImgRaw&r=0",
+            "https://th.bing.com/th/id/R.50a2226d6aee66ae3f58e0debece0fe0?rik=GwN%2fdeyVYPpa8w&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "962708ed-2610-4350-b192-f392dae359e5",
+        "name": "Tran Quoc Pagoda",
+        "address": "Thanh Nien Street, Yen Phu, Tay Ho",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.048064547163776,
+        "longitude": 105.83674582896575,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Religious",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Hanoi is always a great destination for Buddhists with many ancient pagodas and temples. Most of the old pagodas are located around West Lake. Especially, nowhere else is better than Tran Quoc Pagoda, the oldest one in Hanoi, if you are interested in Buddhism.\nTran Quoc Pagoda is more than 1500 years old, which means the place holds such an important role in the development of Vietnam in general and Hanoi in particular. That is the main reason why the temple attracts thousands of visitors from all over the world every year.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.6260676a44828617849b432a360c2511?rik=XZNf5XELOQNWFw&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "ba26b639-b91e-4acc-a308-c5cc1122d08b",
+        "name": "Hoa Lo prison",
+        "address": "1 Hoa Lo, Tran Hung Dao, Hoan Kiem",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.025489913023566,
+        "longitude": 105.84652101045792,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Museums, Historical",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Well-known as one of the most inhumane prisons with terrified punishment, Hoa Lo prison is the unique war museum of Hanoi to keep part of the memory of two wars in Vietnam, French colonial time and Vietnam - US War.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.F7mdfPN4k9fDtj1g7CEMWgHaEK?rs=1&pid=ImgDetMain",
+            "https://www.historyhit.com/app/uploads/2020/11/Hoa-Lo-Prison.jpg",
+            "https://th.bing.com/th/id/R.74e33b7c4d7d6ef3e16ed5d4bc6a2012?rik=Ve%2b4FQk%2bUV6KSw&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "6ce5e394-e338-42cc-9979-dccc4b5df0ab",
+        "name": "The Temple of Literature",
+        "address": "58 Quoc Tu Giam, Van Mieu, Dong Da",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.02839790134305,
+        "longitude": 105.83659188018645,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Attractions, Historical, Cultural",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The Temple of Literature Hanoi (Van Mieu \u2013 Quoc Tu Giam) is a rare example of well-preserved traditional Vietnamese architecture that is dedicated to Confucius and honors Vietnam\u2019s finest scholars. For those who love Vietnamese culture and history, visiting the Temple of Literature is one of the best things to do in Hanoi, as it showcases the ancient and rich heritage of the country. Located in the south of the Imperial Citadel of Thang Long, this is often cited as one of Hanoi\u2019s most picturesque tourist attractions. Being as Vietnam\u2019s first national university, the Temple of Literature is a place of study rather than a religious landmark. It is ranked in Hanoi\u2019s categories of Historic Sites, Points of Interest & Landmarks, Sacred & Religious Sites.",
+        "image_urls": [
+            "https://vietnamtravel.com/images/2020/08/Intro-Hanoi-Temple-of-literature1.jpg",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/The-First-Courtyard-Temple-of-Literature.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/The-Second-Courtyard-Temple-of-Literature.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/The-Third-Courtyard-Thien-Quang-Well.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/The-Fourth-Courtyard-Temple-of-Literature.webp"
+        ]
+    },
+    {
+        "business_id": "6732f608-a924-490d-a7f4-2e5486285c83",
+        "name": "Aeon Mall Long Bien",
+        "address": "27 Co Linh, Long Bien",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.027636168265,
+        "longitude": 105.89882778162172,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Shopping Malls, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Aeon Mall Long Bien, which was put into operation in 2015, is popular among tourists and local alike. With an area of up to 120,000 m2, it is airy and commodious with full functional facilities such as shopping, food, entertainment and sports training",
+        "image_urls": [
+            "https://www.vietnamonline.com/media/uploads/froala_editor/images/VNO-Aeon%20Mall%20Long%20Bien.jpg",
+            "https://www.vietnamonline.com/media/uploads/froala_editor/images/VNO-Aeon%20Mall%20Long%20Bien1.jpeg"
+        ]
+    },
+    {
+        "business_id": "2afe6a11-c63e-416a-8828-bc4a199f43da",
+        "name": "Vincom Mega Mall Royal City",
+        "address": "72A Nguyen Trai, Thuong \u0110inh, Thanh Xuan",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.00227670580345,
+        "longitude": 105.81523851045729,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Shopping Malls, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Vincom Mega Mall Royal City is a premier shopping mall in Hanoi, offering a diverse range of luxury brands, fashion boutiques, and delectable restaurants. With its central location, it\u2019s an essential stop for anyone looking to enjoy a top-tier shopping experience in the heart of the city. Open daily with flexible hours, Vincom Mega Mall Royal City invites you to explore the latest in fashion and dining, making it one of the top shopping destinations in Hanoi.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/11/Vincom-Mega-Mall-Royal-City-Thanh-Xuan-kenh14.vn_.jpg",
+            "https://vietnamdiscovery.com/wp-content/uploads/2020/11/Inside-Vincom-Mega-Mall-Royal-City-Thanh-Xuan-apart.vn_.jpg"
+        ]
+    },
+    {
+        "business_id": "0e6cf5c1-cb6b-431d-8778-dc542ebf5f1d",
+        "name": "KeangNam Landmark",
+        "address": "Cau Giay new resident, Nam Tu Liem",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.01722382191355,
+        "longitude": 105.78451166813042,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Landmarks, Architecture, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "The most attractive point in Keangnam Hanoi Landmark Tower is the Sky 72 at the 72th floor. With the total floor area of 609,673m2, ranked 5th as the largest floor area of a single building in the world, this is a very interesting entertainment area with the pictures exhibition room, 3D photo shooting, 5D cinema and more especial is the vision from the 72th floor which is very interesting. Let\u2019s discover this unique feature!",
+        "image_urls": [
+            "https://tourinhanoi.com/wp-content/uploads/keangnam-landmark-72-hanoi.jpg",
+            ""
+        ]
+    },
+    {
+        "business_id": "1c77c746-a808-41bc-b40d-900e4fe0d5b9",
+        "name": "West Lake",
+        "address": "Tay Ho District",
+        "city": "Hanoi",
+        "state": "HN",
+        "latitude": 21.052584,
+        "longitude": 105.822105,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Entertainment",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "West Lake (also known as Ho Tay \u2013 Tay Ho) is one of the most famous tourist attractions in Hanoi and can also be considered as an iconic place of the capital city of Vietnam. Having a serene and tranquil beauty, West Lake Hanoi would definitely be a proper choice for those who are tired of the hustle and bustle of modern life.\nBeing there, tourists (or even locals) looking for respite can totally be satisfied as West Lake offers a harmonious combination of poetic lake, solemn historic areas, amazing activities, and unforgettable food.",
+        "image_urls": [
+            "https://i0.wp.com/www.goexplorevietnam.com/wp-content/uploads/2022/10/West-Lake-Hanoi.jpeg?resize=1200%2C800&ssl=1",
+            "https://th.bing.com/th/id/OIP.fKKYvLcij4AQG1Iz7V72ggHaE8?rs=1&pid=ImgDetMain"
+        ]
+    },
+    {
+        "business_id": "f6fcbfd0-6f5e-4cc0-9cec-f757f1faad91",
+        "name": "Hoan Kiem Lake",
+        "address": "Hoan Kiem District",
+        "city": "Hanoi",
+        "state": "HN",
+        "latitude": 21.029316,
+        "longitude": 105.852386,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Nature, Historical",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Located right in the center of the capital of Vietnam, Hoan Kiem Lake Hanoi is famous for its peaceful beauty, its cultural as well as historical values.\nMany beautiful words are used to describe the beauty of the lake such as picturesque, magnificent, dreamy, mysterious,\u2026 Its unique beauty attracts a lot of tourists each year, not only Vietnamese but also many foreigners. That\u2019s why Hoan Kiem lake is always one of the top choices when choosing the places to visit in Hanoi.\nIf you have the plan to visit Hoan Kiem Lake Hanoi, Vietnam, let\u2019s stick with this post and find out about its history and what to do there.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/Turtle-tower-Hoan-Kiem-Lake.webp",
+            "https://th.bing.com/th/id/OIP.1mvMH-blTRz3ND65fr3kWwHaEK?rs=1&pid=ImgDetMain",
+            "https://th.bing.com/th/id/R.2575b03185bb6ca8a9ac889288c0fc7a?rik=mm%2b3QtPtbXyqkQ&pid=ImgRaw&r=0"
+        ]
+    },
+    {
+        "business_id": "4e95f20a-9af5-415c-936e-1989da1553c3",
+        "name": "Ha Noi Old Quarter",
+        "address": "Hoan Kiem District",
+        "city": "Hanoi",
+        "state": "HN",
+        "latitude": 21.035779,
+        "longitude": 105.849224,
+        "stars": 4.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Cultual, Historical, Cuisine",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "There\u2019s an old Vietnamese saying, \u201cHanoi has thirty-six streets and guilds \u2013 Jam Street, Sugar Street, Salt Street\u2026\u201d. Inside a modern and dynamic city, there appears an antique quarter, the Hanoi\u2019s Old Quarter \u2013 the represented eternal soul of the city. These days, most Vietnamese and Westerners are familiar with the phrase \u201cHa Noi \u2013 Ba muoi sau pho phuong\u201d (translated as \u201cHa Noi \u2013 36 districts\u201d or \u201cHanoi \u2013 36 Old Streets\u201d), or \u201cPho co Ha Noi\u201d (translated as \u201cHanoi\u2019s Old Quarter\u201d), the top special historical vestige and sight-seeing of the capital, luring international visitors thanks to their mostly original state.",
+        "image_urls": [
+            "https://hanoiexploretravel.com/wp-content/uploads/2024/01/xichlo-around-hanoi.jpg",
+            "https://th.bing.com/th/id/OIP.MY-UneVOyQ_pq8Ux0rB32wHaEK?rs=1&pid=ImgDetMain",
+            "https://fantasea.vn/wp-content/uploads/2018/10/ph%E1%BB%91-c%E1%BB%95-h%C3%A0-n%E1%BB%99i.jpg",
+            "https://dulich3mien.vn/wp-content/uploads/2022/08/Pho-co-Ha-Noi-7.jpg"
+        ]
+    },
+    {
+        "business_id": "d3e4479a-d793-4d2e-9533-ef956bf33155",
+        "name": "Pho 24",
+        "address": "24 Le Loi, District 1",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 10.776888,
+        "longitude": 106.700806,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Restaurants, Vietnamese, Noodles, Food",
+        "hours": {
+            "Monday": "08:00-22:00",
+            "Tuesday": "08:00-22:00",
+            "Wednesday": "08:00-22:00",
+            "Thursday": "08:00-22:00",
+            "Friday": "08:00-22:00",
+            "Saturday": "08:00-22:00",
+            "Sunday": "08:00-22:00"
+        },
+        "description": "Pho 24 is a famous brand name in Vietnam and there are almost nobody that don\u2019t know the name of this restaurant. When talking about Pho, one never forgets to mention Pho 24 in their conversation",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.5ca79ff6dec2e178a9d90fda00ce8925?rik=djkb4%2bD6gGEagw&pid=ImgRaw&r=0",
+            "https://travelsaigon.org/wp-content/uploads/pho24-dong-khoi-2.jpg"
+        ]
+    },
+    {
+        "business_id": "e404d14a-1acb-4dc0-a19f-d573f045b19c",
+        "name": "Bach Ma Temple",
+        "address": "76 Hang Buom, Hoan Kiem",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.034067,
+        "longitude": 105.851083,
+        "stars": 4.2,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Religious Sites, Landmarks & Historical Buildings",
+        "hours": {
+            "Monday": "08:00-18:00",
+            "Tuesday": "08:00-18:00",
+            "Wednesday": "08:00-18:00",
+            "Thursday": "08:00-18:00",
+            "Friday": "08:00-18:00",
+            "Saturday": "08:00-18:00",
+            "Sunday": "08:00-18:00"
+        },
+        "description": "Located in the heart of Hanoi Old Quarter, Bach Ma Temple is regarded as a remarkable historical monument associated with the event of King Ly Thai To\u2019s capital relocation. It stands among the Four Guarding Temples of Thang Long Citadel which were established to form an enclosing boundary of strongholds around the city and deal with potential threats.",
+        "image_urls": [
+            "https://th.bing.com/th/id/R.f9ef7ab1618b3443f2eb9327a0469741?rik=%2fhq2HX3L0PA7%2bg&pid=ImgRaw&r=0",
+            "https://statics.vinpearl.com/bach-ma-temple-01_1691508438.jpg",
+            "https://banahills.sunworld.vn/wp-content/uploads/2024/05/The-clouds-covering-the-mountaintop-around-the-Golden-Bridge.png"
+        ]
+    },
+    {
+        "business_id": "5ba39e01-1641-4d81-8bb7-a56e2c022396",
+        "name": "Da Nang Beach Resort",
+        "address": "101 Vo Nguyen Giap",
+        "city": "Da Nang",
+        "state": "Da Nang",
+        "latitude": 16.060517,
+        "longitude": 108.24943,
+        "stars": 4.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "True"
+        },
+        "categories": "Hotels, Resorts, Beaches, Travel",
+        "hours": null,
+        "description": "The beach is narrow, overlooked by hills, and cushioned by tropical jungle on one side. You can take a boat ride, visit different islands near the coast, and indulge in diving and fishing.",
+        "image_urls": [
+            "https://th.bing.com/th/id/OIP.3oMNoB_rdVDHoVw9jCmwxwHaE6?rs=1&pid=ImgDetMain",
+            "https://bcp.cdnchinhphu.vn/344443456812359680/2023/5/12/da-nang-beaches-1-16838659816141879075557.jpg"
+        ]
+    },
+    {
+        "business_id": "c665b6e5-9de3-444e-bd83-d3e45d86a8db",
+        "name": "Sapa Market",
+        "address": "Kim Tan, Sapa Town",
+        "city": "Sapa",
+        "state": "Lao Cai",
+        "latitude": 22.33831,
+        "longitude": 103.847769,
+        "stars": 4.4,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Markets, Local Flavor, Shopping",
+        "hours": {
+            "Monday": "07:00-17:00",
+            "Tuesday": "07:00-17:00",
+            "Wednesday": "07:00-17:00",
+            "Thursday": "07:00-17:00",
+            "Friday": "07:00-17:00",
+            "Saturday": "07:00-17:00",
+            "Sunday": "07:00-17:00"
+        },
+        "description": "Sapa, Vietnam is a must-visit destination for travelers looking to immerse themselves in the country\u2019s culture and natural beauty. Located in the Hoang Lien Son mountain range, Sapa is famous for its terraced rice fields, ethnic minority communities, and scenic trekking routes.\nBeyond trekking, visitors can explore the town of Sapa and its many attractions, including local markets, ancient stone churches, and traditional handicraft shops. Sapa is also home to many restaurants serving delicious Vietnamese cuisine, including regional specialties like thang co and bamboo-tube rice.\nAs you hike along picturesque trails, you\u2019ll be rewarded with panoramic views of cascading waterfalls, mist-shrouded valleys, and towering mountain peaks. Immerse yourself in the enchanting beauty of the region, capturing stunning photographs and creating lasting memories.",
+        "image_urls": [
+            "https://thuthuatnhanh.com/wp-content/uploads/2021/01/hinh-anh-sapa-dep.jpg",
+            "https://th.bing.com/th/id/R.e9d1518092cd3be68c186af2c0808e6a?rik=A4xmFlyfc%2fGIdg&pid=ImgRaw&r=0",
+            "https://image.vietgoing.com/article/gia-ve-cap-treo-fansipan-2023-va-huong-dan-tham-quan-mua-ve-re-nhat-hien-nay.jpg",
+            "https://mettavoyage.com/wp-content/uploads/2023/01/sapa3.jpg"
+        ]
+    },
+    {
+        "business_id": "fdafad41-4a02-453e-9b70-a932c4117517",
+        "name": "Vincom Center Ba Trieu",
+        "address": "191 Ba Trieu",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.014512,
+        "longitude": 105.847128,
+        "stars": 3.8,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Shopping Malls, Entertainment",
+        "hours": {
+            "Monday": "09:00-22:00",
+            "Tuesday": "09:00-22:00",
+            "Wednesday": "09:00-22:00",
+            "Thursday": "09:00-22:00",
+            "Friday": "09:00-22:00",
+            "Saturday": "09:00-22:00",
+            "Sunday": "09:00-22:00"
+        },
+        "description": "Vincom Center Ba Trieu is a premier shopping mall in Hanoi, offering a diverse range of luxury brands, fashion boutiques, and delectable restaurants. With its central location, it\u2019s an essential stop for anyone looking to enjoy a top-tier shopping experience in the heart of the city. Open daily with flexible hours, Vincom Center Ba Trieu invites you to explore the latest in fashion and dining, making it one of the top shopping destinations in Hanoi.",
+        "image_urls": [
+            "https://odinland.com/wp-content/uploads/2020/10/mat-bang-cho-thue-vin-com-ba-trieu5-1024x576.jpg"
+        ]
+    },
+    {
+        "business_id": "41cdfd51-2c19-4f61-9d0c-ddc0490abdd6",
+        "name": "Hoi An Ancient Town",
+        "address": "Tran Phu Street",
+        "city": "Hoi An",
+        "state": "Quang Nam",
+        "latitude": 15.880058,
+        "longitude": 108.338047,
+        "stars": 3.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Cultural, Historical, UNESCO World Heritage Sites",
+        "hours": {
+            "Monday": "06:00-22:00",
+            "Tuesday": "06:00-22:00",
+            "Wednesday": "06:00-22:00",
+            "Thursday": "06:00-22:00",
+            "Friday": "06:00-22:00",
+            "Saturday": "06:00-22:00",
+            "Sunday": "06:00-22:00"
+        },
+        "description": "Unlike the dynamic Hanoi or Ho Chi Minh City, Hoi An Old Town seems to aside from the busy development of the country, remaining its ancient beauty from its roads to its architectural works. About 30km south of Da Nang city, Hoi An old town is really a great place to really get up close and personal with the real Vietnam, her people and past as well.\nHere is also a rare place where you can find an elegant blend of Vietnamese, Chinese and Japanese architecture.",
+        "image_urls": [
+            "https://banahills.sunworld.vn/wp-content/uploads/2024/05/The-clouds-covering-the-mountaintop-around-the-Golden-Bridge.png",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/Hoi-An-shops-and-restaurants-roadaffair.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/Hoi-An-mid-autumn-festival.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/Hoi-an-streets-at-night-alexis-jetsets.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/09/Japanese-Covered-Bridge-@makiyo9454-2.webp"
+        ]
+    },
+    {
+        "business_id": "3c70fdf8-9423-4e8a-aa01-5ed861268cfd",
+        "name": "Trang An Eco Lodge",
+        "address": "Van Long Nature Reserve",
+        "city": "Ninh Binh",
+        "state": "Ninh Binh",
+        "latitude": 20.273578,
+        "longitude": 105.934073,
+        "stars": 4.6,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "True"
+        },
+        "categories": "Lodging, Nature, Eco-tourism",
+        "hours": null,
+        "description": "Trang An Ecolodge features free bikes, outdoor swimming pool, a garden and terrace in Ninh Binh. The property is around 12 km from Bai Dinh Temple, 36 km from Phat Diem Cathedral and 8.5 km from Ninh Binh Stadium. The accommodation provides a 24-hour front desk, airport transfers, room service and free WiFi.\nAt the resort, the rooms have a balcony. Each room has air conditioning, and certain rooms at Trang An Ecolodge have a patio. Guest rooms will provide guests with a wardrobe and a kettle.\nA buffet, American or Asian breakfast is available daily at the property. At the accommodation you will find a restaurant serving American, French and Seafood cuisine. A vegetarian option can also be requested.\nYou can play billiards at Trang An Ecolodge, and the area is popular for fishing and cycling.\nThung Nham Bird Park Ecotourism is 19 km from the resort, while Trang An Eco Tourism Complex is 600 metres away. Tho Xuan Airport is 86 km from the property.",
+        "image_urls": [
+            "https://cf.bstatic.com/xdata/images/hotel/max1280x900/486368036.jpg?k=8a5638ad564bd1cb8f350226cd6301713d97a911e0e1945a5a6dff0b01f51c71&o=&hp=1",
+            "https://cf.bstatic.com/xdata/images/hotel/max1280x900/487257420.jpg?k=faa82d555a7765cfc099df12d15484670cddc3a82d863ec78158da02c6268ed8&o=&hp=1",
+            "https://cf.bstatic.com/xdata/images/hotel/max1280x900/349650796.jpg?k=44de385bd330352603dadf698d853c3b32ff5e1f5b25d071fcba35a43b4e8a90&o=&hp=1",
+            "https://cf.bstatic.com/xdata/images/hotel/max1280x900/349030107.jpg?k=35826ab2bfba63fd18e21d822ba615acdf3306212d6614267583b05dc090e66f&o=&hp=1"
+        ]
+    },
+    {
+        "business_id": "ea1a423a-8863-46e2-aa64-2290116ab3d2",
+        "name": "Vietnam National Museum of History",
+        "address": "1 Trang Tien Street",
+        "city": "Hanoi",
+        "state": "Hanoi",
+        "latitude": 21.024043,
+        "longitude": 105.854423,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Museums, Historical",
+        "hours": {
+            "Monday": "Closed",
+            "Tuesday": "08:00-16:30",
+            "Wednesday": "08:00-16:30",
+            "Thursday": "08:00-16:30",
+            "Friday": "08:00-16:30",
+            "Saturday": "08:00-16:30",
+            "Sunday": "08:00-16:30"
+        },
+        "description": "Home to rich and diverse collections of historical relics and thematic exhibitions on Vietnamese culture and history, the Vietnam National Museum of History gives visitors a comprehensive view of the development of the country from the prehistoric period through the national formation period.",
+        "image_urls": [
+            "https://silkpathhotel.com/wp-content/uploads/2023/12/silkpath-hanoi-travel-guide-vietnam-National_Museum_of_History-4.jpg",
+            "https://silkpathhotel.com/wp-content/uploads/2023/12/Batiments_172-1200x800.jpg",
+            "https://silkpathhotel.com/wp-content/uploads/2023/12/Interior_view_-_National_Museum_of_Vietnamese_History_-_DSC05471-768x512.jpg"
+        ]
+    },
+    {
+        "business_id": "cc4a5c31-8f8c-4db0-9305-7b6235219375",
+        "name": "Golden Bridge",
+        "address": "Sun World Ba Na Hills",
+        "city": "Da Nang",
+        "state": "Da Nang",
+        "latitude": 15.995644,
+        "longitude": 107.997606,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Landmarks, Nature, Architecture",
+        "hours": {
+            "Monday": "07:30-21:00",
+            "Tuesday": "07:30-21:00",
+            "Wednesday": "07:30-21:00",
+            "Thursday": "07:30-21:00",
+            "Friday": "07:30-21:00",
+            "Saturday": "07:30-21:00",
+            "Sunday": "07:30-21:00"
+        },
+        "description": "Nested at the height of 1,414m from the sea level, the Golden Bridge is no less than an iconic architectural wonder that envisages the sash-like route across the heaven. Spanning nearly 150m long in the Paradise Garden, thisbridge is regarded as a special transit stop to deliver visitors from the mountain foot or the French Village to La Jardin D\u2019Amour Gardens. The bridge measures 12.8m wide and nearly 150m long and comprises 8 arches, the longest of which is 21.2m.",
+        "image_urls": [
+            "https://images.squarespace-cdn.com/content/v1/596b2969d2b85786e6892853/1541249555269-Z2AKPUGOMJZI0OH3X6G5/Golden+Bridge+Ba+Na+Hills%2C+Da+Nang+Vietnam?format=1500w",
+            "https://images.squarespace-cdn.com/content/v1/596b2969d2b85786e6892853/1541246345915-9XDDD9D09RUHHAQSMOX8/Golden+Bridge+crowds?format=1500w",
+            "https://banahills.sunworld.vn/wp-content/uploads/2024/05/The-clouds-covering-the-mountaintop-around-the-Golden-Bridge.png",
+            "https://banahills.sunworld.vn/wp-content/uploads/2024/05/Golden-Bridge-stands-out-in-the-lights.png"
+        ]
+    },
+    {
+        "business_id": "630fe752-d51d-4140-8c50-fb0caf22747c",
+        "name": "Cu Chi Tunnels",
+        "address": "Phu Hiep, Cu Chi District",
+        "city": "Ho Chi Minh",
+        "state": "Ho Chi Minh",
+        "latitude": 11.146474,
+        "longitude": 106.498507,
+        "stars": 4.0,
+        "review_count": 5,
+        "is_open": 1,
+        "attributes": {
+            "ByAppointmentOnly": "False"
+        },
+        "categories": "Historical, Cultural, Attractions",
+        "hours": {
+            "Monday": "07:00-17:00",
+            "Tuesday": "07:00-17:00",
+            "Wednesday": "07:00-17:00",
+            "Thursday": "07:00-17:00",
+            "Friday": "07:00-17:00",
+            "Saturday": "07:00-17:00",
+            "Sunday": "07:00-17:00"
+        },
+        "description": "Located about 60 kilometers to the northeast of Ho Chi Minh City, it is an extensive labyrinth of underground tunnels that stretch all the way to the Cambodian border. The Cu Chi Tunnels network was built within 25 years from 1948 during the war against the French. It served as a means of communication between villages and helped the Vietnamese to evade scouting French soldiers.\nThe tunnel network was extended over an area of 250 kilometers during the Vietnam War. Therefore, it became one of the important parts of Viet Cong fighting troops\u2019 strategy and also the home for thousands of soldiers.",
+        "image_urls": [
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/Houses-in-Cu-Chi-Tunnels_Instagram-@aholmeslice.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/Cu-chi-tunnels-5.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/inside-Cu-Chi-tunnels.webp",
+            "https://vietnamdiscovery.com/wp-content/uploads/2019/10/Cu-Chi-tunnels-3.webp"
+        ]
+    }
+]
